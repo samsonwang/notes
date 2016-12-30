@@ -1,0 +1,98 @@
+#+startup:indent
+
+* FontSet
+ref:https://www.emacswiki.org/emacs/FontSets
+use M-x describe-char to get char set
+
+(create-fontset-from-fontset-spec
+  (concat
+    "-*-consolas-medium-r-normal-*-14-*-*-*-*-*-custom-courier," 
+    "chinese-gb2312:-*-微软雅黑-medium-*-*-*-14-*-*-*-p-*-gb2312*-*,"))
+    
+(set-default-font "fontset-custom")
+(setq default-frame-alist
+  (append '((font . "fontset-custom")) default-frame-alist))
+
+* Useful websites 
+
+** gnu emacs
+http://gnuemacs.org/
+
+*** Make Windows to act more like X
+modify mouse and key bindings
+
+*** Control CR/LF translation
+- automatic CR/LF translation
+Ctrl-M (ASCII 13)
+- CR/LF translation by file system
+
+*** Use Emacs with  Microsoft Visual C++
+There maight be two ways.
+**** DevStudio
+**** Use Emacs as an IDE, calling the MSVC command line tools to build project
+
+** Exah
+Nice website tutorial with pictures.
+http://ergoemacs.org
+
+
+* Occur mode
+M-x list-matching-lines
+
+
+* Ido mode
+
+
+* Emacs bookmark
+M-x bookmark-set
+M-x bookmark-bmenu-list
+M-x bookmark-jump
+(setq bookmark-save-flag 1)
+
+
+
+* Search text in files
+
+M-x list-matching-lines
+M-x highlight-regexp
+
+
+
+* Use magit for git operations
+required magit package
+ 
+* Emacs Shell
+M-x eshell
+M-x shell in windows will run cmd.exe
+
+* GNU Global
+
+GPATH 路径名称数据数据
+GRTAGS 引用数据库
+GSYMS 符号数据库
+
+** Setup tag files for global
+set global path for shell
+GLOBAL_PATH="/d/Program Files/Emacs/global/bin"
+PATH="${GLOBAL_PATH}:${PATH}"
+
+** Use gtags in Emacs
+
+M-x gtags-find-tag
+
+* TODO Use auto-load feature to speed up startup time
+
+
+
+* TODO Enable Line Number on the left side
+* TODO 
+
+
+Tips
+M-x describe-function to get emacs built-in fucntion help
+
+
+
+* TaskArchive
+** DONE Auto install missing packages
+

@@ -1,0 +1,7 @@
+#+startup:indent
+
+* cc-mode
+
+cc-mode configuraion tips
+
+
