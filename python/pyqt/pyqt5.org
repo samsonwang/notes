@@ -1,0 +1,11 @@
+#+stratup:indent
+
+* Use PyQt5 + Qt5 to speedup developing speed.
+
+
+
+** 需要使用SIP
+用来实现Python中调用C/C++的模块
+
+
+

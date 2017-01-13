@@ -1,0 +1,16 @@
+#+startup:indent
+
+* Item 1. Choose your containers with care.
+
+- standard STL sequence containers: vector, string, deque, list
+- standard STL associative containers: set, multiset, map, multimap
+- nonstandard sequence containers: slist, rope
+- nonstandard associative containers: hash_set, hash_multiset, hash_map, hash_multimap
+- vector<char> as a replacement for string
+- vector as a replacement for standard associative containers.
+- 
+
+
+
+
+
