@@ -2,13 +2,44 @@
 
 * Item 1. Choose your containers with care.
 
+** Examples of STL containers.
 - standard STL sequence containers: vector, string, deque, list
 - standard STL associative containers: set, multiset, map, multimap
 - nonstandard sequence containers: slist, rope
 - nonstandard associative containers: hash_set, hash_multiset, hash_map, hash_multimap
 - vector<char> as a replacement for string
 - vector as a replacement for standard associative containers.
-- 
+- several standard non-STL container, including array, bitset, valarray, stack, queue, and priority_queue.
+
+
+** Contiguous-memory containers and Node-based containers.
+
+*** Contiguous-memory containers
+Also known as array-based containers store their element is erased, other elements in one or more(dynamically allocated) chunks of memory, each chunck holding more than one container element. 
+
+*** Node-based containers
+They stores only a single element per chunck of (dynamically allocated) memory.
+
+
+** FAQs when choosing STL containers.
+- Do you need to be able to insert a new element at an arbitrary position in the container?If so, you need a sequence container: associative constainers won't do.
+- Do you care how elements are ordered in the container? If not. a hashed container becomes a viable choice. Otherwise, you'll want to avoid hashed containers.
+- Must the container be part of standard C++? If so, that eliminates hashed containers, slist, and rope.
+- What category of iterators do you require? If they must be random access iterators, you're technically limited to vector, deque, and string, but you'd probably want to consider rope, too. (See Item 50 for information on rope.) If bidirectional iterators are required, you must avoid slist(see Item 50) as well as one common implementation of the hashed containers(see Item25).
+- It is important to avoid movement of existing container elements when insertions or erasures take place? If so, you'll need to stay away from contiguous-memory container(see Item 5).
+- Does the data in the container need to be layout-compatible wich C? If so, you're limited to vectors(see Item 16).
+- Is lookup speed a critical consideration? If so, you'll want to look at hashed containers(see Item 25), sorted vectors(see Item 23), and the standard associative containers---probably in that order.
+- Do you mind if the underlying container uses reference counting? If so, you'll want to steer clear of string, because many string implementations are reference-counted(see Item 13). You'll need to avoid rope, too, because the definitive rope implementation is based on reference counting(see Item 50). You have to represent your strings somehow, of course, so you'll want to consider vector<char>.
+- Do you need transactional semantics for insertions and erasures? That is, do you require the ability to reliably roll back insertions and erasures? If so, you'll want to use a node-based container. If you need transactional semantics for multiple-element insertions(e.g. the range form---see Item5), you'll want to choose list, because list is the only standard container that offers transactional semantics for multiple-element insertions. Transactional semantics are particularly important for programmers interested in writing exception-safe code. (Transcational semantics can be achieved with contiguous-memory container, too, but there is a performance cost, and the code is not as straightforward. To learn more about this, consult Item 17 of Sutter's Exceptional C++).
+- Do you need to minimize iterator, pointer, and reference invalidation? If so, you'll want to use node-based contaioners, because insertions and erasures on such containers never invalidate iterator, pointer, or reference (unless they point to an element you are erasing). In general, insertions or erasures on contiguous-memory containers may invalidate all iterators, pointers, and references into the container.
+- Would it be helpful to have a sequence container with random access iterators where pointers and references to the data are not invalidated as long as nothing is erased and insertions take place only at ends of the container? This is a very special case, but if it's your case, deque is the container of your dreams. (Interestingly, deque's iterator may be invalidated when insertions are made only at the ends of the container, deque is the only standard STL container whose iterator may be invalidated without also invalidating its pointers and references.)
+
+
+
+
+
+
+
 
 
 
