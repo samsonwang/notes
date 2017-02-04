@@ -35,6 +35,12 @@ They stores only a single element per chunck of (dynamically allocated) memory.
 - Would it be helpful to have a sequence container with random access iterators where pointers and references to the data are not invalidated as long as nothing is erased and insertions take place only at ends of the container? This is a very special case, but if it's your case, deque is the container of your dreams. (Interestingly, deque's iterator may be invalidated when insertions are made only at the ends of the container, deque is the only standard STL container whose iterator may be invalidated without also invalidating its pointers and references.)
 
 
+* Item 2. Beware the illusion of container-independent code.
+
+
+
+
+
 
 
 

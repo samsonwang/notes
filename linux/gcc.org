@@ -1,0 +1,27 @@
+#+startup:indent
+
+* 在使用多个静态库时需要注意的问题
+如果库不是相互独立的，那么他们必须排序，使得对于每个被存档文件的成员外部引用的符号s，在命令行中至少有一个s的定义是在对s的引用之后的。比如，假设foo.c调用libx.a和libz.a中的函数，而这两个库有调用liby.a中的函数，那么在命令行libx.a和libz.a必须在liby.a之前。
+
+#+begin_src shell
+unix> gcc foo.c libx.a libz.a liby.a
+#+end_src
+
+* 生成动态库，与位置无关的代码（PIC-position independent code）
+
+#+begin_src shell
+gcc -fPIC
+#+end_src
+
+
+* 处理目标文件的工具（linux）
+ar
+strings
+strip    从目标文件中删除符号表信息
+size     列出目标文件中节的名字和大小
+readelf  显示一个目标文件的完整接口，包括elf头中编码的所有信息，包含size和nm的功能
+objdump  二进制工具之母
+ldd      列出一个可执行文件运行时所需要的共享库
+
+
+
