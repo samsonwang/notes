@@ -1,0 +1,34 @@
+#+startup:indent
+
+* 虚函数相关
+示例程序如下：
+#+begin_src cpp
+class A { virtual void foo(){}; };
+
+class B : A { void foo(int n){}; };
+
+class C : B { void foo(){}; };
+#+end_src
+问题void C::foo()是不是虚函数？
+在多个编译上会不会有区别？
+
+书写了测试代码：src/VirtualFunction.cpp
+
+代码执行结果：
+void C::foo(int n);不是虚函数
+void C::foo();是虚函数
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
