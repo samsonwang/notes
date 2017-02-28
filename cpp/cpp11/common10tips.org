@@ -1,0 +1,73 @@
+#+startup:indent
+
+* auto 关键字
+- 使用auto获得更简洁的代码，如遍历STL容器时使用的迭代器（iterator）
+- auto不能用来声明函数的返回值，但函数如有有一个尾随的返回类型时，auto
+
+
+* nullptr 空指针
+
+C中的空指针(void*)0
+C++中的空指针0
+
+
+* Range-based for loops (基于范围的for循环)
+foreach型for循环
+
+for(const auto& kvp : map)
+{
+    std::cout << kvp.first << std::endl;
+}
+
+std::for_each();
+
+
+需要注意的是在对map类型进行遍历时，拿到的pair类型pair<key, value>
+
+
+* Override 和 final
+override，表示函数应当重写基类中的虚函数
+final，表示派生类不应当重写这个虚函数
+
+
+* Strongly-typed enums 强类型枚举
+
+enum class Options {None, One, All};
+Options o = Options::All;
+
+
+* lambda
+匿名函数，从函数式编程中借来的强大特性
+
+生成斐波那契数列
+#include <functional>
+std::function<int(int)> lfib = 
+    [&lfib](int n){return n<2 ? 1 : lfib(n-1)+lfib(n-2);};
+
+
+* non-member begin() end()
+
+std::begin();
+std::end();
+
+
+* static_assert and type traits
+
+static_assert(equation, "some error happened");
+编译期assert
+编译器assert除了模板编程还有哪些比较经典的用法？
+
+
+
+* Move Semantics
+
+C++11 introduced rvalue reference(右值引用)
+
+
+
+
+
+
+
+
+
