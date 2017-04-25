@@ -1,0 +1,29 @@
+#+startup : indent
+
+* Qt图形界面编程小技巧
+** 使用命名空间前向声明，注意书写的格式。
+** 使用指针作为Ui成员变量，在进行Ui修改时，不用重新编译所有的文件。
+
+
+#+src_begin cpp
+namespace Ui
+{
+  class MainWindow;
+}
+
+class MainWindow : public QMainWindow
+{
+  Q_OBJECT
+public:
+  explicit MainWindow(QWidget* pParent=0);
+  ~MainWindow();
+
+private:
+  Ui::MainWindow* ui;
+}
+#+src_end
+
+
+
+
+
