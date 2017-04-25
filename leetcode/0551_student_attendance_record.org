@@ -1,0 +1,14 @@
+
+#+startup : indent
+
+
+
+0551 Student Attendance Record
+
+A student could be rewarded if his attendance record doesn't constain more than one 'A' (absent) or more than two continuous 'L'(Late).
+
+
+
+
+
+
