@@ -1,14 +1,88 @@
 
 #+startup : indent
 
-
-
 0551 Student Attendance Record
 
 A student could be rewarded if his attendance record doesn't constain more than one 'A' (absent) or more than two continuous 'L'(Late).
 
+Attention: more than 2 continuous 'L' means 3 or more continuous 'L'
+
+* My solution
+class Solution
+{
+public:
+    bool checkRecord(std::string strRecord)
+    {
+        using namespace std;
+        if(strRecord.empty())
+        {
+            return false;
+        }
+
+        const char cAbsent = 'A';
+        const char cLate = 'L';
+
+        int nAbsentCount = strRecord[0]==cAbsent ? 1 : 0;
+        int nLateCount = 0;
+
+        size_t nLen = strRecord.size();
+        for(size_t i=1; i<nLen-1; ++i)
+        {
+            if(strRecord[i] == cAbsent)
+            {
+                ++nAbsentCount;
+            }
+
+            if(strRecord[i-1] == cLate
+              && strRecord[i] == cLate
+              && strRecord[i+1] == cLate)
+            {
+                ++nLateCount;
+            }
+        }
+
+        if( nLen>1 && strRecord[nLen-1] == cAbsent)
+        {
+            ++nAbsentCount;
+        }
 
 
+        if(nAbsentCount>1 || nLateCount>0)
+        {
+            return false;
+        }
+        return true;
+    }
+};
 
+
+* C++ very simple solution(from leetcode)
+
+bool checkRecord(string s)
+{
+    int a=0, l=0;
+    for(int i=0;i<s.size();i++)
+    {
+        if(s[i]=='A')
+        {
+            a++;
+        }
+
+        if(s[i]=='L')
+        {
+            l++;
+        }
+        else
+        {
+            l=0;
+        }
+
+        if(a>=2||l>2) 
+        {
+            return false;
+        }
+    }
+    return true;
+}
 
 
