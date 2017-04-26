@@ -1,0 +1,59 @@
+
+
+* two sum 
+return the indices of the given array to calculate the sum of target
+
+* My Subscribe
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        
+        vector<int> vecInt;
+        
+        size_t nSize = nums.size();
+        for(size_t i=0; i<nSize; ++i)
+        {
+            for(size_t j=i+1; j<nSize; ++j)
+            {
+                if(nums[i] + nums[j] == target)
+                {
+                    vecInt.push_back(i);
+                    vecInt.push_back(j);
+                    return vecInt;
+                }
+            }
+        }
+        return vecInt;
+    }
+};
+
+
+* leetcode cpp solution
+
+use map as hashmap instead
+
+vector<int> twoSum(vector<int> &numbers, int target)
+{
+    //Key is the number and value is its index in the vector.
+	unordered_map<int, int> hash;
+	vector<int> result;
+	for (int i = 0; i < numbers.size(); i++) {
+		int numberToFind = target - numbers[i];
+
+            //if numberToFind is found in map, return them
+		if (hash.find(numberToFind) != hash.end()) {
+                    //+1 because indices are NOT zero based
+			result.push_back(hash[numberToFind] + 1);
+			result.push_back(i + 1);			
+			return result;
+		}
+
+            //number was not found. Put it in the map.
+		hash[numbers[i]] = i;
+	}
+	return result;
+}
+
+
+
+
