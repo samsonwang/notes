@@ -4,7 +4,7 @@
 return the indices of the given array to calculate the sum of target
 
 * My Subscribe
-
+#+begin_src c++
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
@@ -27,7 +27,7 @@ public:
         return vecInt;
     }
 };
-
+#+end_src
 
 * leetcode cpp solution
 
