@@ -4,6 +4,7 @@
 return the indices of the given array to calculate the sum of target
 
 * My Subscribe
+
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
@@ -31,7 +32,7 @@ public:
 * leetcode cpp solution
 
 use map as hashmap instead
-
+#+begin_src c++
 vector<int> twoSum(vector<int> &numbers, int target)
 {
     //Key is the number and value is its index in the vector.
@@ -53,6 +54,66 @@ vector<int> twoSum(vector<int> &numbers, int target)
 	}
 	return result;
 }
+#+end_src
+
+
+* An impliment using std::map
+
+
+#+BEGIN_SRC C++
+
+#include <vector>
+#include <map>
+#include <cstdio>
+#include <iostream>
+#include <string>
+
+std::vector<int> calSum(const std::vector<int>& vecNums, int nTarget)
+{
+    std::map<int, int> mapNumToIndex;
+
+    std::vector<int> vecResult;
+    for(size_t i=0; i<vecNums.size();++i)
+    {
+        int nNumToFind = nTarget - vecNums[i];
+        if(mapNumToIndex.end() != mapNumToIndex.find(nNumToFind))
+        {
+            vecResult.push_back(i);
+            vecResult.push_back(mapNumToIndex[nNumToFind]);
+            return vecResult;
+        }
+
+        mapNumToIndex[vecNums[i]] = i;
+    }
+
+    return vecResult;
+}
+
+
+int main(int argc, char* argv[])
+{
+    std::vector<int> vecNums{2, 7, 11, 5};
+
+    for(int nNum : vecNums)
+    {
+        std::cout << nNum << std::string(" ");
+    }
+    std::cout << std::endl;
+
+    std::vector<int> vecRet = calSum(vecNums, 13);
+    if(vecRet.size() == 2)
+    {
+        std::cout << "result: " << vecRet[0] << " " << vecRet[1] << std::endl;
+    }
+    else
+    {
+        std::cout <<"error" <<std::endl;
+    }
+
+    return 0;
+}
+
+#+END_SRC
 
 
 
