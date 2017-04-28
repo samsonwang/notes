@@ -1,0 +1,16 @@
+
+#+startup indent
+
+reverse digits of an integer
+
+example1: x=123, return 321
+example2: x=-123, return -321
+
+pay attention to overflow after reverse
+
+
+
+
+
+
+
