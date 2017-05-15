@@ -8,9 +8,57 @@ example2: x=-123, return -321
 
 pay attention to overflow after reverse
 
+you should return 0 when the reserved integer overflows
 
 
+// how to find out the integer is overflow?
 
+#+begin_src C++
+#include <cstdio>
+#include <iostream>
+
+
+int reverse(int nNumber)
+{
+  int nReversed = 0;
+
+  do{
+
+  int nTemp = nNumber%10 + nReversed*10;
+
+  // overflow detection
+  if(nTemp/10 != nReversed)
+  {
+    return 0;
+  }
+  nReversed = nTemp;
+
+  nNumber = nNumber/10;
+  }while(nNumber!=0);
+
+  return nReversed;
+}
+
+int main(int argc, char const* argv[])
+{
+	int nBefore = -123456789;
+
+	int nAfter = reverse(nBefore);
+
+	std::cout << "nBefore:" << nBefore << std::endl;
+	std::cout << "nAfter:" << nAfter << std::endl;
+
+	return 0;
+}
+
+#+end_src
+
+
+* overflow detection
+
+use long long as result holder
+
+compare after every digit covertion
 
 
 
