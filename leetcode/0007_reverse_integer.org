@@ -1,5 +1,5 @@
 
-#+startup indent
+#+startup:indent
 
 reverse digits of an integer
 

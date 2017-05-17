@@ -1,0 +1,55 @@
+#+startup:indent
+
+* Question: remove element
+- Given an array and a value, remove all instances of that value in place and return the new length.
+- Do not allocate extra space for another array, you must do this in place with constant memory.
+- The order of elements can be changed. It doesn't matter what you leave beyond the new length.
+
+
+
+
+* My solution
+使用的vector的迭代器，可能会出现重复的赋值，效率并不是最优
+
+#+begin_src c++
+
+int removeElement(vector<int>& nums, int val)
+{
+	for (vector<int>::iterator it = nums.begin(); it!=nums.end();)
+	{
+		if (*it == val)
+		{
+			it = nums.erase(it);
+		}
+		else
+		{
+			 ++it;
+		}
+	}
+	return static_cast<int>(nums.size());
+}
+
+#+end_src
+
+* leetcode solution 
+减少了元素的复制，有可能会提高效率，但是会存在寻址效率的问题。
+#+begin_src C++
+int removeElement(vector<int>& nums, int val)
+{    
+	int count = 0;
+	for (int i=0; i<nums.size(); ++i)
+	{
+		if (nums[i] == val)
+		{
+			++count;
+		}
+		else
+		{
+			nums[i-count] = nums[i];
+		}
+	}
+	return nums.size() - count;
+}
+#+end_src
+
+
