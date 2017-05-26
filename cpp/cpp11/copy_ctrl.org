@@ -1,0 +1,75 @@
+
+
+* 对于默认生成的拷贝构造和拷贝赋值，如何限制默认生成的隐式函数。
+C++98编译器会隐式产生四个函数：缺省构造函数、析构函数、拷贝构造函数、拷贝赋值算子
+C++11中被称为“特殊成员函数”的还有两个：移动构造函数、移动赋值算子
+
+* default/delete
+
+demo
+
+#+begin_src C++
+class LeafOfTree{
+public:
+　　LeafOfTree() = default;
+　　~LeafOfTree() = default;
+
+    // mark copy ctor or copy assignment operator as deleted functions
+　　LeafOfTree( const LeafOfTree& ) = delete;
+　　LeafOfTree & operator=( const LeafOfTree &) = delete; 
+};
+#+end_src
+
+
+
+* 在函数重载中，可以用delete来滤掉一些函数的形参类型
+
+示例代码
+#+begin_src C++
+
+bool isLucky(int number);        // original function
+bool isLucky(char) = delete;     // reject chars
+bool isLucky(bool) = delete;     // reject bools
+bool isLucky(double) = delete;   // reject doubles and floats
+
+if (isLucky('a')) …     // error !    call to deleted function
+if (isLucky(true)) …    // error !
+if (isLucky(3.5)) …     // error !
+
+#+end_src
+
+* 模板特化
+
+在模板特例化中，也可以用delete来过滤一些特定的形参类型。
+
+#+begin_src c++
+class Widget {
+public:
+    template<typename T>
+    void processPointer(T* ptr) { … }
+private:
+    template<>             
+    void processPointer<void>(void*);    // error!
+};
+#+end_src
+- 模板特化应该被卸载命名空间域（namespace scope）,而不是类域（class scope）,因此该方法会报错。
+
+
+在C++11中，因为有了delete关键字，则可以直接在类域外将特例化的模板函数声明为delete
+
+#+begin_src c++
+template<> 
+void Widget::processPointer<void>(void*) = delete; // still public, but deleted
+#+end_src
+
+
+
+
+
+
+
+
+
+
+
+
