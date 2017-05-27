@@ -1,0 +1,36 @@
+
+
+* /MT /MTd and /MD /MDd
+
+** /MD
+Causes the application to use the multithread-specific and DLL-specific version of the run-time library. Defines _MT and _DLL and causes the compiler to place the library name MSVCRT.lib into the .obj file.
+Applications compiled with this option are statically linked to MSVCRT.lib. This library provides a layer of code that enables the linker to resolve external references. The actual working code is contained in MSVCRversionnumber.DLL, which must be available at run time to applications linked with MSVCRT.lib.
+
+** /MDd
+Defines _DEBUG, _MT, and _DLL and causes the application to use the debug multithread-specific and DLL-specific version of the run-time library. It also causes the compiler to place the library name MSVCRTD.lib into the .obj file.
+
+** /MT
+Causes the application to use the multithread, static version of the run-time library. Defines _MT and causes the compiler to place the library name LIBCMT.lib into the .obj file so that the linker will use LIBCMT.lib to resolve external symbols.
+
+** /MTd
+Defines _DEBUG and _MT. This option also causes the compiler to place the library name LIBCMTD.lib into the .obj file so that the linker will use LIBCMTD.lib to resolve external symbols.
+
+
+* /MD 与 /MT的选择
+
+** 1> 为什么选择/MD，不选/MT？
+1. 程序就不需要静态链接运行时库，可以减小软件的大小；
+2. 所有的模块都采用/MD，使用的是同一个堆，不存在A堆申请，B堆释放的问题。
+
+** 2> 为什么选择/MT，不选择/MD？
+1. 有些系统可能没有程序所需要版本的运行时库，程序必须把运行时库静态链接上。
+
+** 3> 多个模块，必须选择相同类型的运行时库，不要混合使用。
+
+* 选择/MT需要解决的堆空间释放问题
+不同的模块各自有一份C运行时库代码，各个C运行库会有各自的堆，导致了各个模块会有各自的堆。
+如果在A堆中申请空间，到B堆中释放就会有崩溃，在模块A申请的空间，必须在模块A中释放。
+
+
+* Caution
+Do not mix static and dynamic versions of the run-time libraries. Having more than one copy of the run-time libraries in a process can cause problems, because static data in one copy is not shared with the other copy. The linker prevents you from linking with both static and dynamic versions within one .exe file, but you can still end up with two (or more) copies of the run-time libraries. For example, a dynamic-link library linked with the static (non-DLL) versions of the run-time libraries can cause problems when used with an .exe file that was linked with the dynamic (DLL) version of the run-time libraries. (You should also avoid mixing the debug and non-debug versions of the libraries in one process.)
