@@ -1,0 +1,13 @@
+
+
+* __declspec
+
+1) deprecated:
+与#pragma deprecated() 作用相同，用于指定函数的某个重载形式是不推荐的。
+
+
+2) 
+
+3) 
+4) 
+
