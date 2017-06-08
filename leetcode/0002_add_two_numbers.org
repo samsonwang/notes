@@ -1,0 +1,75 @@
+
+
+* add two numbers
+key words:
+1. single linked list
+2. single digit per node
+3. digit in reverse order
+
+
+* notes
+1. 在没有进位时的多余节点处理方法
+2. 在进行链表题目时，在返回链表节点时并不一定要返回首节点
+   首节点可以作为一个存储后续节点的辅助节点
+
+
+
+* My solution
+#+begin_src C++
+class Solution
+{
+public:
+	ListNode* addTwoNumbers(ListNode* l1, ListNode* l2)
+	{
+		int carry = 0;
+		ListNode* result = new ListNode(0);
+		ListNode* last = nullptr;
+		ListNode* loop = result;
+		while(carry>0 || l1 || l2)
+		{
+			int num1 = l1 ? l1->val : 0;
+			int num2 = l2 ? l2->val : 0;
+
+			int num_result = num1 + num2 + carry;
+			carry = num_result/10;
+			loop->val = num_result%10;
+			loop->next = new ListNode(0);
+			
+			l1 = l1 ? l1->next : nullptr;
+			l2 = l2 ? l2->next : nullptr;
+
+			last = loop;
+			loop = loop->next;
+		}
+
+		if (last)
+		{
+			delete last->next;
+			last->next = nullptr;
+		}
+
+		return result;
+	}
+};
+
+#+end_src
+
+
+* leetcode solution
+
+#+begin_src C++
+ListNode *addTwoNumbers(ListNode *l1, ListNode *l2) {
+    ListNode preHead(0), *p = &preHead;
+    int extra = 0;
+    while (l1 || l2 || extra) {
+        int sum = (l1 ? l1->val : 0) + (l2 ? l2->val : 0) + extra;
+        extra = sum / 10;
+        p->next = new ListNode(sum % 10);
+        p = p->next;
+        l1 = l1 ? l1->next : l1;
+        l2 = l2 ? l2->next : l2;
+    }
+    return preHead.next;
+}
+#+end_src
+
