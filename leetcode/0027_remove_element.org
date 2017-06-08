@@ -1,4 +1,4 @@
-#+startup:indent
+ï»¿#+startup:indent
 
 * Question: remove element
 - Given an array and a value, remove all instances of that value in place and return the new length.
@@ -9,7 +9,7 @@
 
 
 * My solution
-Ê¹ÓÃµÄvectorµÄµü´úÆ÷£¬¿ÉÄÜ»á³öÏÖÖØ¸´µÄ¸³Öµ£¬Ğ§ÂÊ²¢²»ÊÇ×îÓÅ
+ä½¿ç”¨çš„vectorçš„è¿­ä»£å™¨ï¼Œå¯èƒ½ä¼šå‡ºç°é‡å¤çš„èµ‹å€¼ï¼Œæ•ˆç‡å¹¶ä¸æ˜¯æœ€ä¼˜
 
 #+begin_src c++
 
@@ -32,7 +32,7 @@ int removeElement(vector<int>& nums, int val)
 #+end_src
 
 * leetcode solution 
-¼õÉÙÁËÔªËØµÄ¸´ÖÆ£¬ÓĞ¿ÉÄÜ»áÌá¸ßĞ§ÂÊ£¬µ«ÊÇ»á´æÔÚÑ°Ö·Ğ§ÂÊµÄÎÊÌâ¡£
+å‡å°‘äº†å…ƒç´ çš„å¤åˆ¶ï¼Œæœ‰å¯èƒ½ä¼šæé«˜æ•ˆç‡ï¼Œä½†æ˜¯ä¼šå­˜åœ¨å¯»å€æ•ˆç‡çš„é—®é¢˜ã€‚
 #+begin_src C++
 int removeElement(vector<int>& nums, int val)
 {    

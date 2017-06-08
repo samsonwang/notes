@@ -1,4 +1,4 @@
-
+﻿
 
 * two sum 
 return the indices of the given array to calculate the sum of target
@@ -7,25 +7,25 @@ return the indices of the given array to calculate the sum of target
 #+begin_src c++
 class Solution {
 public:
-    vector<int> twoSum(vector<int>& nums, int target) {
-        
-        vector<int> vecInt;
-        
-        size_t nSize = nums.size();
-        for(size_t i=0; i<nSize; ++i)
-        {
-            for(size_t j=i+1; j<nSize; ++j)
-            {
-                if(nums[i] + nums[j] == target)
-                {
-                    vecInt.push_back(i);
-                    vecInt.push_back(j);
-                    return vecInt;
-                }
-            }
-        }
-        return vecInt;
-    }
+	vector<int> twoSum(vector<int>& nums, int target) {
+		
+		vector<int> vecInt;
+		
+		size_t nSize = nums.size();
+		for(size_t i=0; i<nSize; ++i)
+		{
+			for(size_t j=i+1; j<nSize; ++j)
+			{
+				if(nums[i] + nums[j] == target)
+				{
+					vecInt.push_back(i);
+					vecInt.push_back(j);
+					return vecInt;
+				}
+			}
+		}
+		return vecInt;
+	}
 };
 #+end_src
 
@@ -35,24 +35,24 @@ use map as hashmap instead
 #+begin_src c++
 vector<int> twoSum(vector<int> &numbers, int target)
 {
-    //Key is the number and value is its index in the vector.
-	unordered_map<int, int> hash;
-	vector<int> result;
-	for (int i = 0; i < numbers.size(); i++) {
-		int numberToFind = target - numbers[i];
+	//Key is the number and value is its index in the vector.
+    unordered_map<int, int> hash;
+    vector<int> result;
+    for (int i = 0; i < numbers.size(); i++) {
+	int numberToFind = target - numbers[i];
 
-            //if numberToFind is found in map, return them
-		if (hash.find(numberToFind) != hash.end()) {
-                    //+1 because indices are NOT zero based
-			result.push_back(hash[numberToFind] + 1);
-			result.push_back(i + 1);			
-			return result;
-		}
-
-            //number was not found. Put it in the map.
-		hash[numbers[i]] = i;
+	//if numberToFind is found in map, return them
+	if (hash.find(numberToFind) != hash.end()) {
+					//+1 because indices are NOT zero based
+	    result.push_back(hash[numberToFind] + 1);
+	    result.push_back(i + 1);            
+	    return result;
 	}
-	return result;
+
+	//number was not found. Put it in the map.
+	hash[numbers[i]] = i;
+    }
+    return result;
 }
 #+end_src
 
@@ -70,47 +70,47 @@ vector<int> twoSum(vector<int> &numbers, int target)
 
 std::vector<int> calSum(const std::vector<int>& vecNums, int nTarget)
 {
-    std::map<int, int> mapNumToIndex;
+	std::map<int, int> mapNumToIndex;
 
-    std::vector<int> vecResult;
-    for(size_t i=0; i<vecNums.size();++i)
-    {
-        int nNumToFind = nTarget - vecNums[i];
-        if(mapNumToIndex.end() != mapNumToIndex.find(nNumToFind))
-        {
-            vecResult.push_back(i);
-            vecResult.push_back(mapNumToIndex[nNumToFind]);
-            return vecResult;
-        }
+	std::vector<int> vecResult;
+	for(size_t i=0; i<vecNums.size();++i)
+	{
+		int nNumToFind = nTarget - vecNums[i];
+		if(mapNumToIndex.end() != mapNumToIndex.find(nNumToFind))
+		{
+			vecResult.push_back(i);
+			vecResult.push_back(mapNumToIndex[nNumToFind]);
+			return vecResult;
+		}
 
-        mapNumToIndex[vecNums[i]] = i;
-    }
+		mapNumToIndex[vecNums[i]] = i;
+	}
 
-    return vecResult;
+	return vecResult;
 }
 
 
 int main(int argc, char* argv[])
 {
-    std::vector<int> vecNums{2, 7, 11, 5};
+	std::vector<int> vecNums{2, 7, 11, 5};
 
-    for(int nNum : vecNums)
-    {
-        std::cout << nNum << std::string(" ");
-    }
-    std::cout << std::endl;
+	for(int nNum : vecNums)
+	{
+		std::cout << nNum << std::string(" ");
+	}
+	std::cout << std::endl;
 
-    std::vector<int> vecRet = calSum(vecNums, 13);
-    if(vecRet.size() == 2)
-    {
-        std::cout << "result: " << vecRet[0] << " " << vecRet[1] << std::endl;
-    }
-    else
-    {
-        std::cout <<"error" <<std::endl;
-    }
+	std::vector<int> vecRet = calSum(vecNums, 13);
+	if(vecRet.size() == 2)
+	{
+		std::cout << "result: " << vecRet[0] << " " << vecRet[1] << std::endl;
+	}
+	else
+	{
+		std::cout <<"error" <<std::endl;
+	}
 
-    return 0;
+	return 0;
 }
 
 #+END_SRC
