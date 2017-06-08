@@ -1,0 +1,47 @@
+
+
+* 67 add binary
+
+** 两个字符串形式的二进制数相加
+- 需要注意进位问题
+- 需要注意在运算到最后一位时，如果没有进位则不需要在最前面加‘0’
+
+#+begin_src C++
+class Solution
+{
+public:
+string addBinary(string strNum1, string strNum2)
+{
+        
+	string::size_type nLen1 = strNum1.length();
+	string::size_type nLen2 = strNum2.length();
+	
+	string::size_type nLenMax = std::max(nLen1, nLen2);
+
+	string strResult;
+
+	int nCarry = 0;
+	int nPos1 = nLen1-1;
+	int nPos2 = nLen2-1;
+
+	while (nCarry>0 || nPos1>=0 || nPos2>=0)
+	{
+		int nTemp1 = nPos1>=0 ? (strNum1[nPos1] - '0') : 0;
+		--nPos1;
+		
+		int nTemp2 = nPos2>=0 ? (strNum2[nPos2] - '0') : 0;
+		--nPos2;
+
+		int nTempResult = nTemp1 + nTemp2 + nCarry;
+		strResult = (char)('0' + nTempResult%2) + strResult;
+
+		nCarry = nTempResult/2;
+	}
+
+	return strResult;
+    }
+};
+
+#+end_src
+
+
