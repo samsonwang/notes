@@ -1,0 +1,24 @@
+﻿
+* Google Style Guide
+
+
+** RTTI(run-time type information)
+avoid using run time type information
+
+- Virtual methods are the preferred way of executing different code paths depending on a specific subclass type. This puts the work within the object itself.
+- If the work belongs outside the object and instead in some processing code, consider a double-dispatch solution, such as the Visitor design pattern. This allows a facility outside the object itself to determine the type of class using the built-in type system.
+
+- Decision trees based on type are a strong indication that your code is on the wrong track.
+#+begin_src C++
+if (typeid(*data) == typeid(D1)) {
+  ...
+} else if (typeid(*data) == typeid(D2)) {
+  ...
+} else if (typeid(*data) == typeid(D3)) {
+...
+#+end_src
+Code such as this usually breaks when additional subclasses are added to the class hierarchy. Moreover, when properties of a subclass change, it is difficult to find and modify all the affected code segments.
+根据对象类型决定决定代码逻辑说明你的设计出现了问题，这样的设计通常会在出现新的子类时出现问题。
+
+
+
