@@ -1,0 +1,12 @@
+﻿
+
+* design pattern visitor 访问者设计模式
+
+- 通过google cpp style guide接触到使用访问者模式解决RTTI相关问题
+- 目前在工作中遇到可以采用访问者设计模式的模块：终端组态图元的抽象模块
+http://blog.csdn.net/yudajun/article/details/39141359
+
+
+* 尝试使用访问者设计模式改进现有模块代码
+
+
