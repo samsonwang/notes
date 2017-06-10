@@ -1,0 +1,3 @@
+[submodule "tarena"]
+	path = tarena
+	url = git@github.com:samsonwang/Study.git
