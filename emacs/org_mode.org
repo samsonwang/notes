@@ -1,0 +1,19 @@
+#+STARTUP: indent
+* Org Mode 笔记
+http://www.360doc.com/content/14/1219/13/20545288_434126794.shtml
+** 大纲相关的快捷键
+shift + tab 循环切换整个文档的大纲状态
+C-c C-n/p 上下一级标题
+C-c C-f/b 上下一级标题(仅限同级标题)
+*** 基于大纲的编辑
+M-RET 插入一个同级标题
+M-LEFT/RIGHT 将当前标题升/降级
+M-S-RET 插入一个同级TODO标题
+M-s-LEFT/RIGHT 将子树升级/降级
+** TODO [#A] 
+M-x org-indent-mode 切换到另外一种现实格式
+使用STARTUP:indent默认开启缩进模式 
+
+
+*Org Agenda View
+
