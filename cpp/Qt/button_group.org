@@ -1,0 +1,15 @@
+﻿
+* QPushButton/QToolButton/QButtonGroup的exclusive特性
+
+- 这些按钮类都派生于QAbstractButton，都有checkable属性，checkable==true属性的按钮可以被按下。
+- 为了实现多个按钮的互斥效果，可以通过他们exclusive属性完成
+- 具有同一个父界面的exclusive按钮能够保证同时只有一个按钮被按下
+- 如果需要实现不属于同一个父界面多个按钮的按下状态互斥，可以把这些按钮放置在同一个QButtonGroup中，由它来保证属于其中的按钮具有按下状态的互斥性
+
+
+
+* QButtonGroup特性
+- 处于QButtonGroup中的按钮，不能够通过void setChecked(bool)函数更改它的按下状态
+- 如果需要手动变更按钮组中的按下状态，需要先将QButtonGroup设置为不互斥void setExclusive(bool),在手动更改好按钮按下状态后，再将QButtonGroup的属性恢复为互斥
+
+
