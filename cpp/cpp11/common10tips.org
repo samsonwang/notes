@@ -1,18 +1,18 @@
 #+startup:indent
 
-* auto ¹Ø¼ü×Ö
-- Ê¹ÓÃauto»ñµÃ¸ü¼ò½àµÄ´úÂë£¬Èç±éÀúSTLÈİÆ÷Ê±Ê¹ÓÃµÄµü´úÆ÷£¨iterator£©
-- auto²»ÄÜÓÃÀ´ÉùÃ÷º¯ÊıµÄ·µ»ØÖµ£¬µ«º¯ÊıÈçÓĞÓĞÒ»¸öÎ²ËæµÄ·µ»ØÀàĞÍÊ±£¬auto
+* auto å…³é”®å­—
+- ä½¿ç”¨autoè·å¾—æ›´ç®€æ´çš„ä»£ç ï¼Œå¦‚éå†STLå®¹å™¨æ—¶ä½¿ç”¨çš„è¿­ä»£å™¨ï¼ˆiteratorï¼‰
+- autoä¸èƒ½ç”¨æ¥å£°æ˜å‡½æ•°çš„è¿”å›å€¼ï¼Œä½†å‡½æ•°å¦‚æœ‰æœ‰ä¸€ä¸ªå°¾éšçš„è¿”å›ç±»å‹æ—¶ï¼Œauto
 
 
-* nullptr ¿ÕÖ¸Õë
+* nullptr ç©ºæŒ‡é’ˆ
 
-CÖĞµÄ¿ÕÖ¸Õë(void*)0
-C++ÖĞµÄ¿ÕÖ¸Õë0
+Cä¸­çš„ç©ºæŒ‡é’ˆ(void*)0
+C++ä¸­çš„ç©ºæŒ‡é’ˆ0
 
 
-* Range-based for loops (»ùÓÚ·¶Î§µÄforÑ­»·)
-foreachĞÍforÑ­»·
+* Range-based for loops (åŸºäºèŒƒå›´çš„forå¾ªç¯)
+foreachå‹forå¾ªç¯
 
 for(const auto& kvp : map)
 {
@@ -22,24 +22,24 @@ for(const auto& kvp : map)
 std::for_each();
 
 
-ĞèÒª×¢ÒâµÄÊÇÔÚ¶ÔmapÀàĞÍ½øĞĞ±éÀúÊ±£¬ÄÃµ½µÄpairÀàĞÍpair<key, value>
+éœ€è¦æ³¨æ„çš„æ˜¯åœ¨å¯¹mapç±»å‹è¿›è¡Œéå†æ—¶ï¼Œæ‹¿åˆ°çš„pairç±»å‹pair<key, value>
 
 
-* Override ºÍ final
-override£¬±íÊ¾º¯ÊıÓ¦µ±ÖØĞ´»ùÀàÖĞµÄĞéº¯Êı
-final£¬±íÊ¾ÅÉÉúÀà²»Ó¦µ±ÖØĞ´Õâ¸öĞéº¯Êı
+* Override å’Œ final
+overrideï¼Œè¡¨ç¤ºå‡½æ•°åº”å½“é‡å†™åŸºç±»ä¸­çš„è™šå‡½æ•°
+finalï¼Œè¡¨ç¤ºæ´¾ç”Ÿç±»ä¸åº”å½“é‡å†™è¿™ä¸ªè™šå‡½æ•°
 
 
-* Strongly-typed enums Ç¿ÀàĞÍÃ¶¾Ù
+* Strongly-typed enums å¼ºç±»å‹æšä¸¾
 
 enum class Options {None, One, All};
 Options o = Options::All;
 
 
 * lambda
-ÄäÃûº¯Êı£¬´Óº¯ÊıÊ½±à³ÌÖĞ½èÀ´µÄÇ¿´óÌØĞÔ
+åŒ¿åå‡½æ•°ï¼Œä»å‡½æ•°å¼ç¼–ç¨‹ä¸­å€Ÿæ¥çš„å¼ºå¤§ç‰¹æ€§
 
-Éú³Éì³²¨ÄÇÆõÊıÁĞ
+ç”Ÿæˆæ–æ³¢é‚£å¥‘æ•°åˆ—
 #include <functional>
 std::function<int(int)> lfib = 
     [&lfib](int n){return n<2 ? 1 : lfib(n-1)+lfib(n-2);};
@@ -54,14 +54,14 @@ std::end();
 * static_assert and type traits
 
 static_assert(equation, "some error happened");
-±àÒëÆÚassert
-±àÒëÆ÷assert³ıÁËÄ£°å±à³Ì»¹ÓĞÄÄĞ©±È½Ï¾­µäµÄÓÃ·¨£¿
+ç¼–è¯‘æœŸassert
+ç¼–è¯‘å™¨asserté™¤äº†æ¨¡æ¿ç¼–ç¨‹è¿˜æœ‰å“ªäº›æ¯”è¾ƒç»å…¸çš„ç”¨æ³•ï¼Ÿ
 
 
 
 * Move Semantics
 
-C++11 introduced rvalue reference(ÓÒÖµÒıÓÃ)
+C++11 introduced rvalue reference(å³å€¼å¼•ç”¨)
 
 
 

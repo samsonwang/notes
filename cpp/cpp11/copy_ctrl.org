@@ -1,8 +1,8 @@
 
 
-* ¶ÔÓÚÄ¬ÈÏÉú³ÉµÄ¿½±´¹¹ÔìºÍ¿½±´¸³Öµ£¬ÈçºÎÏŞÖÆÄ¬ÈÏÉú³ÉµÄÒşÊ½º¯Êı¡£
-C++98±àÒëÆ÷»áÒşÊ½²úÉúËÄ¸öº¯Êı£ºÈ±Ê¡¹¹Ôìº¯Êı¡¢Îö¹¹º¯Êı¡¢¿½±´¹¹Ôìº¯Êı¡¢¿½±´¸³ÖµËã×Ó
-C++11ÖĞ±»³ÆÎª¡°ÌØÊâ³ÉÔ±º¯Êı¡±µÄ»¹ÓĞÁ½¸ö£ºÒÆ¶¯¹¹Ôìº¯Êı¡¢ÒÆ¶¯¸³ÖµËã×Ó
+* å¯¹äºé»˜è®¤ç”Ÿæˆçš„æ‹·è´æ„é€ å’Œæ‹·è´èµ‹å€¼ï¼Œå¦‚ä½•é™åˆ¶é»˜è®¤ç”Ÿæˆçš„éšå¼å‡½æ•°ã€‚
+C++98ç¼–è¯‘å™¨ä¼šéšå¼äº§ç”Ÿå››ä¸ªå‡½æ•°ï¼šç¼ºçœæ„é€ å‡½æ•°ã€ææ„å‡½æ•°ã€æ‹·è´æ„é€ å‡½æ•°ã€æ‹·è´èµ‹å€¼ç®—å­
+C++11ä¸­è¢«ç§°ä¸ºâ€œç‰¹æ®Šæˆå‘˜å‡½æ•°â€çš„è¿˜æœ‰ä¸¤ä¸ªï¼šç§»åŠ¨æ„é€ å‡½æ•°ã€ç§»åŠ¨èµ‹å€¼ç®—å­
 
 * default/delete
 
@@ -11,20 +11,20 @@ demo
 #+begin_src C++
 class LeafOfTree{
 public:
-¡¡¡¡LeafOfTree() = default;
-¡¡¡¡~LeafOfTree() = default;
+ã€€ã€€LeafOfTree() = default;
+ã€€ã€€~LeafOfTree() = default;
 
     // mark copy ctor or copy assignment operator as deleted functions
-¡¡¡¡LeafOfTree( const LeafOfTree& ) = delete;
-¡¡¡¡LeafOfTree & operator=( const LeafOfTree &) = delete; 
+ã€€ã€€LeafOfTree( const LeafOfTree& ) = delete;
+ã€€ã€€LeafOfTree & operator=( const LeafOfTree &) = delete; 
 };
 #+end_src
 
 
 
-* ÔÚº¯ÊıÖØÔØÖĞ£¬¿ÉÒÔÓÃdeleteÀ´ÂËµôÒ»Ğ©º¯ÊıµÄĞÎ²ÎÀàĞÍ
+* åœ¨å‡½æ•°é‡è½½ä¸­ï¼Œå¯ä»¥ç”¨deleteæ¥æ»¤æ‰ä¸€äº›å‡½æ•°çš„å½¢å‚ç±»å‹
 
-Ê¾Àı´úÂë
+ç¤ºä¾‹ä»£ç 
 #+begin_src C++
 
 bool isLucky(int number);        // original function
@@ -32,30 +32,30 @@ bool isLucky(char) = delete;     // reject chars
 bool isLucky(bool) = delete;     // reject bools
 bool isLucky(double) = delete;   // reject doubles and floats
 
-if (isLucky('a')) ¡­     // error !    call to deleted function
-if (isLucky(true)) ¡­    // error !
-if (isLucky(3.5)) ¡­     // error !
+if (isLucky('a')) â€¦     // error !    call to deleted function
+if (isLucky(true)) â€¦    // error !
+if (isLucky(3.5)) â€¦     // error !
 
 #+end_src
 
-* Ä£°åÌØ»¯
+* æ¨¡æ¿ç‰¹åŒ–
 
-ÔÚÄ£°åÌØÀı»¯ÖĞ£¬Ò²¿ÉÒÔÓÃdeleteÀ´¹ıÂËÒ»Ğ©ÌØ¶¨µÄĞÎ²ÎÀàĞÍ¡£
+åœ¨æ¨¡æ¿ç‰¹ä¾‹åŒ–ä¸­ï¼Œä¹Ÿå¯ä»¥ç”¨deleteæ¥è¿‡æ»¤ä¸€äº›ç‰¹å®šçš„å½¢å‚ç±»å‹ã€‚
 
 #+begin_src c++
 class Widget {
 public:
     template<typename T>
-    void processPointer(T* ptr) { ¡­ }
+    void processPointer(T* ptr) { â€¦ }
 private:
     template<>             
     void processPointer<void>(void*);    // error!
 };
 #+end_src
-- Ä£°åÌØ»¯Ó¦¸Ã±»Ğ¶ÔØÃüÃû¿Õ¼äÓò£¨namespace scope£©,¶ø²»ÊÇÀàÓò£¨class scope£©,Òò´Ë¸Ã·½·¨»á±¨´í¡£
+- æ¨¡æ¿ç‰¹åŒ–åº”è¯¥è¢«å¸è½½å‘½åç©ºé—´åŸŸï¼ˆnamespace scopeï¼‰,è€Œä¸æ˜¯ç±»åŸŸï¼ˆclass scopeï¼‰,å› æ­¤è¯¥æ–¹æ³•ä¼šæŠ¥é”™ã€‚
 
 
-ÔÚC++11ÖĞ£¬ÒòÎªÓĞÁËdelete¹Ø¼ü×Ö£¬Ôò¿ÉÒÔÖ±½ÓÔÚÀàÓòÍâ½«ÌØÀı»¯µÄÄ£°åº¯ÊıÉùÃ÷Îªdelete
+åœ¨C++11ä¸­ï¼Œå› ä¸ºæœ‰äº†deleteå…³é”®å­—ï¼Œåˆ™å¯ä»¥ç›´æ¥åœ¨ç±»åŸŸå¤–å°†ç‰¹ä¾‹åŒ–çš„æ¨¡æ¿å‡½æ•°å£°æ˜ä¸ºdelete
 
 #+begin_src c++
 template<> 

@@ -1,0 +1,23 @@
+
+* Change file encoding
+C-x C-m f save file with encoding
+
+
+* 关于UTF-8编码格式和BOM
+- UTF-8 不需要 BOM，尽管 Unicode 标准允许在 UTF-8 中使用 BOM。
+- 所以不含 BOM 的 UTF-8 才是标准形式，在 UTF-8 文件中放置 BOM 主要是微软的习惯（顺便提一下：把带有 BOM 的小端序 UTF-16 称作「Unicode」而又不详细说明，这也是微软的习惯）。
+- BOM（byte order mark）是为 UTF-16 和 UTF-32 准备的，用于标记字节序（byte order）。微软在 UTF-8 中使用 BOM 是因为这样可以把 UTF-8 和 ASCII 等编码明确区分开，但这样的文件在 Windows 之外的操作系统里会带来问题。
+
+- 另附《The Unicode Standard, Version 6.0》之 3.10 D95 UTF-8 encoding scheme 的一段话：
+While there is obviously no need for a byte order signature when using UTF-8, there are occasions when processes convert UTF-16 or UTF-32 data containing a byte order mark into UTF-8. When represented in UTF-8, the byte order mark turns into the byte sequence. Its usage at the beginning of a UTF-8 data stream is neither required nor recommended by the Unicode Standard, but its presence does not affect conformance to the UTF-8 encoding scheme. Identification of the byte sequence at the beginning of a data stream can, however, be taken as a near-certain indication that the data stream is using the UTF-8 encoding scheme.
+http://www.unicode.org/versions/Unicode6.0.0/ch03.pdf
+
+- 有bom格式在开头会多出3个字节 EF BB BF ,主要用于识别编码。bom应该是windows特有的，在制作网页时会产生各种意想不到的问题，例如多输出了一个空行，影响PHP的session或者cookies功能（出现 header already sent错误），甚至可能引起页面的乱码（那3个字节影响了浏览器对页面编码的处理），因此总是推荐使用无bom编码。
+
+
+摘抄自知乎：
+http://www.zhihu.com/question/20167122
+
+
+
+
