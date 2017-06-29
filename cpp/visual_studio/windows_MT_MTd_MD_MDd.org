@@ -16,20 +16,20 @@ Causes the application to use the multithread, static version of the run-time li
 Defines _DEBUG and _MT. This option also causes the compiler to place the library name LIBCMTD.lib into the .obj file so that the linker will use LIBCMTD.lib to resolve external symbols.
 
 
-* /MD �� /MT��ѡ��
+* /MD 与 /MT的选择
 
-** 1> Ϊʲôѡ��/MD����ѡ/MT��
-1. ����Ͳ���Ҫ��̬��������ʱ�⣬���Լ�С�����Ĵ�С��
-2. ���е�ģ�鶼����/MD��ʹ�õ���ͬһ���ѣ�������A�����룬B���ͷŵ����⡣
+** 1> 为什么选择/MD，不选/MT？
+1. 程序就不需要静态链接运行时库，可以减小软件的大小；
+2. 所有的模块都采用/MD，使用的是同一个堆，不存在A堆申请，B堆释放的问题。
 
-** 2> Ϊʲôѡ��/MT����ѡ��/MD��
-1. ��Щϵͳ����û�г�������Ҫ�汾������ʱ�⣬������������ʱ�⾲̬�����ϡ�
+** 2> 为什么选择/MT，不选择/MD？
+1. 有些系统可能没有程序所需要版本的运行时库，程序必须把运行时库静态链接上。
 
-** 3> ���ģ�飬����ѡ����ͬ���͵�����ʱ�⣬��Ҫ���ʹ�á�
+** 3> 多个模块，必须选择相同类型的运行时库，不要混合使用。
 
-* ѡ��/MT��Ҫ����Ķѿռ��ͷ�����
-��ͬ��ģ�������һ��C����ʱ����룬����C���п���и��ԵĶѣ������˸���ģ����и��ԵĶѡ�
-�����A��������ռ䣬��B�����ͷžͻ��б�������ģ��A����Ŀռ䣬������ģ��A���ͷš�
+* 选择/MT需要解决的堆空间释放问题
+不同的模块各自有一份C运行时库代码，各个C运行库会有各自的堆，导致了各个模块会有各自的堆。
+如果在A堆中申请空间，到B堆中释放就会有崩溃，在模块A申请的空间，必须在模块A中释放。
 
 
 * Caution
