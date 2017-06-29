@@ -1,0 +1,22 @@
+
+
+* Distinction Between Null and Empty Strings
+
+For historical reasons, QString distinguishes between a null string and an 
+empty string. A null is a string that is initialized using QString's default
+constructor or by passing (const char*)0 to the constructor. An empty string
+is any string with size 0. A null string is always empty, but an empty string
+isn't necessarily null:
+
+QString().isNull();               // returns true
+QString().isEmpty();              // returns true
+
+QString("").isNull();             // returns false
+QString("").isEmpty();            // returns true
+
+QString("abc").isNull();          // returns false
+QString("abc").isEmpty();         // returns false
+
+prefer isEmpty() function and avoid isNull()
+
+
