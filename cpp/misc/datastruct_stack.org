@@ -1,0 +1,15 @@
+
+
+* stack
+堆栈数据结构
+需要使用的头文件#include <stack>
+
+* fuctions
+函数接口：由于单端开放，只有针对一侧访问的修改和访问接口
+top
+push
+pop
+empty
+size
+
+
