@@ -1,5 +1,6 @@
 ﻿
 
+
 * two sum 
 return the indices of the given array to calculate the sum of target
 
