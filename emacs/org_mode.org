@@ -13,7 +13,14 @@ M-s-LEFT/RIGHT 将子树升级/降级
 ** TODO [#A] 
 M-x org-indent-mode 切换到另外一种现实格式
 使用STARTUP:indent默认开启缩进模式 
+** Org Agenda View
+** 插入源代码的快捷操作
+输入 <s 之后 按下tab键进行展开
 
 
-*Org Agenda View
 
+
+
+
+
+ 
