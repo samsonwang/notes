@@ -1,0 +1,80 @@
+
+* Question
+Merge two sorted linked lists and return it as a new list.
+The new list should be made by splicing together the nodes of the first two lists.
+
+* Tips
+- 链表操作时要注意内存分配问题
+- 链表题目在进行链表处理时可以并不返回起始节点，
+  可以建立第一个起始节点作方便后续处理操作
+
+* My solution
+
+#+begin_src c++
+
+struct ListNode {
+	int val;
+	ListNode *next;
+	ListNode(int x) : val(x), next(NULL) {}
+};
+
+class Solution {
+public:
+	ListNode* mergeTwoLists(ListNode* l1, ListNode* l2)
+	{
+		if (NULL==l1 || NULL==l2)
+		{
+			return l1>l2 ? l1 : l2;
+		}
+
+		ListNode* pRet = NULL;
+		ListNode* pDest = NULL;
+		if (l1->val < l2->val)
+		{
+			pDest = l1;
+			l1 = l1->next;
+		}
+		else
+		{
+			pDest = l2;
+			l2 = l2->next;
+		}
+
+		pRet = pDest;
+
+		while(l1 && l2)
+		{
+			if (l1->val < l2->val)
+			{
+				pDest->next = l1;
+				l1 = l1->next;
+			}
+			else
+			{
+				pDest->next = l2;
+				l2 = l2->next;
+			}
+
+			pDest = pDest->next;
+		}
+
+		if (NULL != l1)
+		{
+			pDest->next = l1;
+		}
+		else if (NULL != l2)
+		{
+			pDest->next = l2;
+		}
+
+		return pRet;
+	}
+};
+
+#+end_src
+
+
+
+
+
+
