@@ -1,0 +1,16 @@
+
+* string integer transform
+
+itoa
+atoi
+
+sprintf(snprintf)
+sscanf
+
+stringstream
+
+cpp11
+string::to_string()
+
+
+
