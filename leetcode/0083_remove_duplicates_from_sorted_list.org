@@ -1,0 +1,68 @@
+
+
+* question
+- single linked sorted list.
+- tips: garbage collection issue.
+  But don't use delete node; construct on an interview without
+  discussing it with the interviewer.
+  A list node can be allocated in many different ways and we can
+  use delete node; only if we are sure that the nodes were allocated
+  with new TreeNode(...);.
+
+
+* my solution
+
+#+BEGIN_SRC c++
+class Solution {
+public:
+    ListNode* deleteDuplicates(ListNode* head) {
+        ListNode dummy(0);
+        dummy.next = head;
+        ListNode* preHead = &dummy;
+        if(head && head->val == preHead->val) preHead->val++;
+        while(head != NULL){
+            if(preHead->val == head->val){
+                while(head && preHead->val == head->val){
+                    head = head->next;
+                    preHead->next = preHead->next->next;
+                }
+            }else{
+                preHead = preHead->next;
+                head = head->next;
+            }
+        }
+        return dummy.next;
+    }
+};
+#+END_SRC
+
+
+
+* leetcode solution
+
+#+begin_src c++
+class Solution {
+public:
+	ListNode* deleteDuplicates(ListNode* head) {
+		ListNode dummy(0);
+		dummy.next = head;
+		ListNode* preHead = &dummy;
+		if(head && head->val == preHead->val) preHead->val++;
+		while(head != NULL){
+			if(preHead->val == head->val){
+				while(head && preHead->val == head->val){
+					head = head->next;
+					preHead->next = preHead->next->next;
+				}
+			}else{
+				preHead = preHead->next;
+				head = head->next;
+			}
+		}
+		return dummy.next;
+	}
+};
+#+end_src
+
+
+
