@@ -1,0 +1,18 @@
+
+* database startup
+
+listener start
+
+#+BEGIN_SRC shell
+
+lsnrctl start
+
+su - oracle
+
+sqlplus /nolog
+> conn /as sysdba
+> startup
+
+#+END_SRC
+
+

@@ -1,0 +1,32 @@
+
+
+* maximun subarray
+
+
+* my solution(learned from leetcode)
+#+BEGIN_SRC C++
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums)
+    {
+        if(nums.empty())
+        {
+           return 0; 
+        }
+        
+        int nRet = nums.front();
+	    int nSum = 0;
+
+	    for (size_t i=0; i<nums.size(); ++i)
+        {
+		    nSum += nums[i];
+		    nRet = max(nRet, nSum);
+		    nSum = max(0, nSum);
+	    }
+	    return nRet;
+     }
+};
+
+#+END_SRC
+
+
