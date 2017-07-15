@@ -1,16 +1,26 @@
 
 * string integer transform
 
-itoa
-atoi
+** atoi itoa
+*** itoa 整数转字符串
+char* itoa(int value, char* string, int radix);
 
-sprintf(snprintf)
-sscanf
+*** atoi 字符数组转整数
+int atoi(const char* str);
 
-stringstream
+** sprintf sscanf
+*** sprintf(snprintf)
+int snprintf(char* buffer, std::size_t buf_size, const char* formant, ...);
+*** sscanf
+int sscanf(const char* buffer, const char* format, ...);
 
+** stringstream
+*** stringstream
+使用stringstream进行转换效率较高，但是会出现效率问题
+
+
+** string::to_string
 cpp11
-string::to_string()
 
 
 
