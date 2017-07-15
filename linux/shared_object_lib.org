@@ -1,0 +1,27 @@
+
+* Linux 下共享库（动态库）的生成方法
+
+不同于Windos Visual Studio的写法（使用dllexport和dllimport）
+Linux 系统中生成共享库（动态库）只需要更改编译器的相关参数即可
+
+** 生成静态库文件的makefile写法
+例子：
+#+BEGIN_SRC makefile
+g++ -c TGame.cpp //生成TGame.o文件   
+g++ -c tapi.cpp //生成tapi.o文件   
+g++ -c tmain.cpp //生成tmain.o文件   
+ar cr libtapi.a tapi.o TGame.o   //生成libtapi.a静态库文件   
+g++ -o app -L. -ltapi tmain.o   //生成可执行文件app
+#+END_SRC
+
+
+** 生成共享库的makefile写法
+例子：
+#+BEGIN_SRC makefile
+g++ -c -fPIC TGame.cpp //生成TGame.o文件   
+g++ -c -fPIC tapi.cpp //生成tapi.o文件   
+g++ -c tmain.cpp //生成tmain.o文件   
+g++ -shared -fPIC -o libtapi.so tapi.o TGame.o //生成libtapi.so动态库文件   
+g++ -o app tmain.o -L.  -ltapi   //生成可执行文件app
+#+END_SRC
+
