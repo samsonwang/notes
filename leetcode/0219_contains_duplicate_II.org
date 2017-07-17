@@ -1,12 +1,13 @@
 
-
-
 * question
 Given an array of integers and an integer k, find out whether
 there are two distinct indices i and j in the array such that
 nums[i] = nums[j] and the absolute difference between i and j
 is at most k.
 
+** 关于题意理解的问题
+- find out whether there are 表示找到一个即可，并不要求数组中所有
+  的数都满足条件。
 
 
 * my solution
@@ -35,13 +36,9 @@ public:
 };
 #+END_SRC
 
-
-
-
-
-
 * leetcode solution
 
+** src code 
 #+BEGIN_SRC c++
 bool containsNearbyDuplicate(vector<int>& nums, int k) {
     set<int> cand;
@@ -52,3 +49,12 @@ bool containsNearbyDuplicate(vector<int>& nums, int k) {
     return false;
 }
 #+END_SRC
+
+** code analysis
+- 滑动窗口的思想（sliding window）
+  集合 cand 永远只会保存最多k个元素，当这些元素中出现了重复情况时
+  就满足的题目中的要求，查找结束
+
+
+
+
