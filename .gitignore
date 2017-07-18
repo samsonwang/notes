@@ -37,6 +37,8 @@
 *.db
 *.opendb
 *.vs/
+ipch
+[D|d]ebug
 
 # Visual Studio Code
 .vscode
