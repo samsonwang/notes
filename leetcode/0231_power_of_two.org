@@ -1,0 +1,61 @@
+
+
+* question
+Given an integer, write a function to determine if it
+is a power of two.
+
+** tips
+- 在考虑问题时要全面，要照顾到输入端可能出现的任何情况
+- 尽早将不满足条件的分支返回，这样能够提高程序运行效率
+- 幂指数可能为零，零次幂的结果永远为 “1” 这个不要忽略掉
+
+* my solution
+#+BEGIN_SRC c++
+  bool isPowerOfTwo(int n)
+  {
+    if (n<=0)
+    {
+      return false;
+    }
+
+    int count = 0;
+    int top = 0;
+
+    int temp = n;
+    do
+    {
+      top = temp;
+      temp = temp>>1;
+      ++count;
+    }while (temp>0);
+    
+    --count;
+    
+    if (top<<count == n)
+    {
+      return true;
+    }
+    return false;
+  }
+#+END_SRC
+
+
+* leetcode solution
+#+BEGIN_SRC c++
+class Solution {
+public:
+    bool isPowerOfTwo(int n) {
+        size_t count = 0;
+        
+        if (n < 0)
+            return false;
+        
+        while (n) {
+            count += n & 1;
+            n >>= 1;
+        }
+        return count == 1;
+    }
+};
+#+END_SRC
+
