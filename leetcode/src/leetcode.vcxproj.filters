@@ -54,6 +54,12 @@
     <ClInclude Include="0225_implement_stack_using_queues.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="0217_contains_duplicate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="0231_power_of_two.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompiled.cpp">

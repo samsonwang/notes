@@ -89,8 +89,10 @@
     <ClInclude Include="0083_remove_duplicates_from_sorted_list.h" />
     <ClInclude Include="0100_same_tree.h" />
     <ClInclude Include="0121_best_time_to_buy_and_sell_stock.h" />
+    <ClInclude Include="0217_contains_duplicate.h" />
     <ClInclude Include="0219_contains_duplicate_II.h" />
     <ClInclude Include="0225_implement_stack_using_queues.h" />
+    <ClInclude Include="0231_power_of_two.h" />
     <ClInclude Include="PreCompiled.h" />
   </ItemGroup>
   <ItemGroup>
