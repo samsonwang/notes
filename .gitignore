@@ -32,7 +32,11 @@
 *~
 *#
 
+# Visual Studio
+*.user
+*.db
+*.opendb
+*.vs/
+
 # Visual Studio Code
 .vscode
-
-
