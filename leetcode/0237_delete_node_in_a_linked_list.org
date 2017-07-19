@@ -1,0 +1,51 @@
+
+* question
+Write a function to delete a node (except the tail) in a singly linked
+list, given only access to that node.
+
+Supposed the linked list is 1 -> 2 -> 3 -> 4 and you are given the third
+node with value 3, the linked list should become 1 -> 2 -> 4 after calling
+your function.
+
+** 
+- 这个题目实在太蠢了，我在解题时并没有理解题意
+- 题目的本意是写出删除节点的函数
+
+* my solution
+#+BEGIN_SRC c++
+class Solution_0237 {
+public:
+  void deleteNode(ListNode* node)
+  {
+    const int target = 3;
+
+    ListNode* prev = nullptr;
+    while(node)
+    {
+      if(target == node->val)
+      {
+        if (prev)
+        {
+          prev->next = node->next;
+          prev = node->next;
+        }
+      } 
+      prev = node;
+      node = node->next;
+    }
+  }
+};
+#+END_SRC
+
+
+* leetcode solution
+#+BEGIN_SRC c++
+class Solution {
+public:
+    void deleteNode(ListNode* node) {
+        node->val = node->next->val;
+        node->next = node->next->next;
+    }
+};
+#+END_SRC
+
