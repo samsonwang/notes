@@ -60,6 +60,12 @@
     <ClInclude Include="0231_power_of_two.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="0237_delete_node_in_a_linked_list.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="0643_maximum_average_subarray_I.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompiled.cpp">
