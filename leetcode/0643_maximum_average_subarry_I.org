@@ -83,3 +83,39 @@ public class Solution {
 }
 #+END_SRC
 
+
+** ultra fast
+- 整数累加比浮点数累加要快
+- 尽量减少比较判断的次数，减少分支语句的执行
+- 除法是比较耗时的操作，尽量减少除法运算的次数
+
+#+BEGIN_SRC c++
+class Solution {
+public:
+    typedef long long ll;
+    double findMaxAverage(vector<int> nums, int k) {
+        int n = nums.size();
+        // Check if 'k' is valid
+        assert(n >= k);
+ 
+        // Compute sum of first 'k' elements
+        ll sum = nums[0];
+        for (int i=1; i<k; i++) {
+            sum += nums[i];
+        }
+ 
+        ll max_sum = sum;
+ 
+        // Compute sum of remaining subarrays
+        for (int i=k; i<n; i++) {
+            sum = sum + nums[i] - nums[i-k];
+            if (sum > max_sum) {
+                max_sum = sum;
+            }
+        }
+ 
+        // Return starting index
+        return max_sum / (k + .0);
+    }
+};
+#+END_SRC
