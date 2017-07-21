@@ -13,11 +13,31 @@ Elements of the given array will be in the range [-10,000, 10,000].
 */
 
 #include <vector>
+#include <algorithm>
 using namespace std;
 
-class Solution {
+class Solution_0643
+{
 public:
-  double findMaxAverage(vector<int>& nums, int k) {
+  double findMaxAverage(vector<int>& nums, int k)
+  {
+    double ans = -10000;
+    double temp = 0.0;
 
+    for (int i = 0; i < (int)nums.size(); ++i)
+    {
+      temp += nums[i];
+
+      if (k-i <= 0)
+      {
+        temp -= nums[i-k];
+      }
+
+      if (k-i <= 1)
+      {
+        ans = std::max(ans, temp/k);
+      }
+    }
+    return ans;
   }
 };
