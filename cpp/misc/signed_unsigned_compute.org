@@ -1,0 +1,17 @@
+
+* 有符号和无符号之间的混合运算
+- signed 与 unsigned 之间运算会将运算结果会用 unsigned 表示
+
+#+BEGIN_SRC c++
+unsigned int a = 4;
+int b = 4;
+
+bool bRet = a-b-1<0;
+// 运算的结果是 false，结果用 unsigned 进行表示，永远不会是负数
+
+
+#+END_SRC 
+
+
+
+
