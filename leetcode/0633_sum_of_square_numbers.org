@@ -1,0 +1,117 @@
+
+* question
+Given a non-negative integer c, your task is to decide whether there
+are two integers a and b such that a2 + b2 = c.
+
+** tips
+要综合考虑
+
+* my solution
+
+** 暴力解法
+暴击解法时间超限了
+#+BEGIN_SRC c++
+class Solution_0633
+{
+public:
+	bool judgeSquareSum(int c)
+	{
+		int range = (int)sqrt(c) + 1;
+
+		for (int i=0; i<range; ++i)
+		{
+			for (int j=i; j<range; ++j)
+			{
+				double res = pow(i, 2) + pow(j, 2);
+
+				if (abs(res - c) < 0.0001)
+				{
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+}
+#+END_SRC
+
+** 缓存数据解法
+- 数据缓存解法需要使用额外的空间
+- 数据存储解法在缓存数据和查找数据时的效率可能并不高
+
+#+BEGIN_SRC c++
+class Solution_0633
+{
+public:
+	bool judgeSquareSum1(int c)
+	{
+		set<int> nums;
+
+		int range = (int)sqrt(c) + 1;
+
+		for (int i = 0; i<range; ++i)
+		{
+			int a = i*i;
+			nums.insert(a);
+
+			int b = c - a;
+
+			if (nums.find(b) != nums.end())
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+};
+
+#+END_SRC
+
+
+* leetcode solution
+** sqrt
+#+BEGIN_SRC c++
+class Solution {
+public:
+    bool judgeSquareSum(int c) {
+        if (c < 0) return false;
+        int k = sqrt(c);
+        while(k >= 0) {
+            int val = c - k * k;
+            if ((int)sqrt(val) * (int)sqrt(val) == val) {
+                //cout << "c = " << c << ", k = " << k << ", val = " << val << endl;
+                return true;
+            }
+            k--;
+        }
+        return false;
+    }
+};
+#+END_SRC
+
+** binary search
+- 二分查找实际上是替代sqrt的计算，当不能使用sqrt函数时，可以考虑使用
+- 二分查找会占用额外的空间，由于使用了递归
+#+BEGIN_SRC java
+public class Solution {
+    public boolean judgeSquareSum(int c) {
+        for (long a = 0; a * a <= c; a++) {
+            int b = c - (int)(a * a);
+            if (binary_search(0, b, b))
+                return true;
+        }
+        return false;
+    }
+    public boolean binary_search(long s, long e, int n) {
+        if (s > e)
+            return false;
+        long mid = s + (e - s) / 2;
+        if (mid * mid == n)
+            return true;
+        if (mid * mid > n)
+            return binary_search(s, mid - 1, n);
+        return binary_search(mid + 1, e, n);
+    }
+}
+#+END_SRC
+
