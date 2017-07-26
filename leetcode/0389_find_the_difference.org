@@ -16,9 +16,28 @@ Find the letter that was added in t.
 
 
 * my solution
+- ?? 并没有通过，错误提示：期望输出字符'e'，但是输出了"e"
 
 #+BEGIN_SRC c++
+class Solution {
+public:
+	char findTheDifference(string s, string t)
+	{
+		int sum = 0;
+		for (size_t i = 0; i<t.size(); ++i)
+		{
+			sum += t.at(i);
+		}
 
+		for (size_t i = 0; i<s.size(); ++i)
+		{
+			sum -= s.at(i);
+		}
+        char ret = (char)sum;
+
+		return ret;
+	}
+};
 #+END_SRC
 
 * leetcode solution
