@@ -1,0 +1,14 @@
+
+
+* 关于vector容器容量相关的操作
+
+size_t count() 和 size_t size() 获取到的是vector容器中的元素的个数
+size_t capacity() 获取到的是vector容器的容量
+
+resize(size_t count, T t = T()) 可以修改容器的容量，
+如果进行了扩容，则会使用默认的值进行赋值，
+如果进行了缩小，则会仅保留容量大小个数的的元素
+
+
+
+
