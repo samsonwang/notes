@@ -72,6 +72,9 @@
     <ClInclude Include="0389_find_the_difference.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="0383_ransom_note.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompiled.cpp">
