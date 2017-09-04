@@ -95,6 +95,7 @@
     <ClInclude Include="0225_implement_stack_using_queues.h" />
     <ClInclude Include="0231_power_of_two.h" />
     <ClInclude Include="0237_delete_node_in_a_linked_list.h" />
+    <ClInclude Include="0374_guess_number_higher_or_lower.h" />
     <ClInclude Include="0383_ransom_note.h" />
     <ClInclude Include="0389_find_the_difference.h" />
     <ClInclude Include="0633_sum_of_square_numbers.h" />
