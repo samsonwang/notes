@@ -75,6 +75,9 @@
     <ClInclude Include="0383_ransom_note.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="0168_excel_sheet_column_title.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompiled.cpp">
