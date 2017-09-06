@@ -1,3 +1,6 @@
 [submodule "tarena"]
 	path = tarena
 	url = git@github.com:samsonwang/Study.git
+[submodule "growth"]
+	path = growth
+	url = git@github.com:samsonwang/growth.git
