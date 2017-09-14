@@ -84,6 +84,9 @@
     <ClInclude Include="0375_guess_number_higer_or_lower.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="0371_sum_of_two_integers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompiled.cpp">
