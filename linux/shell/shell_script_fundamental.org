@@ -1,0 +1,23 @@
+
+
+*  shell script fundamental
+
+- locate 用于定位某个文件
+- ulimit
+- xargs
+- pgrep, pkill
+- chown, chgrp
+- adduser, userdel, usermod
+- find
+- file -i
+- ps
+- top
+
+
+
+
+
+
+
+
+
