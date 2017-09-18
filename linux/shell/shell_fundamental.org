@@ -1,31 +1,93 @@
 
-
 *  shell script fundamental
 
-- locate 用于定位某个文件
-- ulimit
-- xargs
+
+** 进程控制相关
+
+- kill
+
 - pgrep, pkill
-- chown, chgrp
-- adduser, userdel, usermod
-- find
-- file -i
+
 - ps
+
 - top
+  linux 下的任务管理器
+
+- jobs, fg
+  使用jobs能够查看当前终端在后台运行的程序或命令
+  使用fg能够将后台运行的程序带回shell前端
 
 
-- ls
+** 文件操作相关
+
+- locate 用于定位某个文件
+
+- xargs
+
+- chown, chgrp
+
+- find
+
+- file -i
+
+
+
+- ls 用于显示当前目录包含的内容
   ls -l 显示详细信息
   ls -a 显示隐藏文件
   ls -t 按照时间排序进行
   ls -r 逆序排序
+  ls -p 使用反斜杠区分目录，
+        拓展：可以使用grep -v 反向匹配达到过滤目录的功能
+
+- lsof 列出所有被打开的文件 list open files
+
+
+- wc 用于计算某个文件中的行数，字数，字节数
+  wc -l 只显示行数
+  wc -w 只显示字数
+  wc -c 显示字节数
+  wc -m 显示字符数
+  
+
+- df
+
+- du
+
+- ln
+
+- grep 正则表达式匹配
+  grep -v 正则表达式逆向匹配
+  grep -i 正则表达式忽略大小写
+
+
+- awk 
+
+
+- curl
+
+
+- sed
+
+
+- cut 
 
 
 
+** 系统操作相关
 
-- jobs, fg
-使用jobs能够查看当前终端在后台运行的程序或命令
-使用fg能够将后台运行的程序带回shell前端
+- ulimit
+
+
+- adduser, userdel, usermod
+
+
+
+** 网络相关的命令行指令
+- netstat
+- nc
+- tcpdump
+- iptables
 
 
 
