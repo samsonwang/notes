@@ -7,3 +7,12 @@ http://ergoemacs.org/emacs/emacs.html
 git@github.com:eschulte/emacs24-starter-kit.git
 xiaohanyu/oh-my-emacs
 redguardtoo/emacs.d
+
+
+
+## eamcs 书籍
+Learning GNU Emacs
+GNU Emacs Pocket Reference
+
+
+
