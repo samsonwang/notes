@@ -1,0 +1,24 @@
+
+* question leetcode 0374
+
+We are playing the Guess Game.The game is as follows :
+
+I pick a number from 1 to n.You have to guess which number I picked.
+
+Every time you guess wrong, I'll tell you whether the number is higher or lower.
+
+You call a pre-defined API guess(int num) which returns 3 possible
+results(-1, 1, or 0) :
+
+-1 : My number is lower
+1 : My number is higher
+0 : Congrats!You got it!
+
+Example :
+n = 10, I pick 6.
+Return 6.
+
+- 我有点不太明白题目的要求是什么？
+- 看过答案之后，我明白了题目的要求：
+  使用给定的guess函数完成给定数字的查找，传入的参数为查找的范围
+

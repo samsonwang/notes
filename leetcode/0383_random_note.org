@@ -1,0 +1,48 @@
+
+* leetcode 383 ransomnote
+需要注意的是，题目中要求的可以字母排序可以是乱序的
+
+* My solution
+
+#+BEGIN_SRC c++
+
+#include <string>
+using namespace std;
+
+class Solution
+{
+public:
+	bool canConstruct(string ransomNote, string magazine)
+	{
+		vector<int> buffer;
+		buffer.resize(26, 0);
+
+		for (char ch : magazine)
+		{
+			int pos = ch - 'a';
+			if (pos>=0 && pos<buffer.size())
+			{
+				buffer[pos] += 1;
+			}
+		}
+
+		for (char ch : ransomNote)
+		{
+			int pos = ch - 'a';
+			if (pos>=0 && pos<buffer.size())
+			{
+				buffer[pos] -= 1;
+				if (buffer[pos] < 0)
+				{
+					return false;
+				}
+			}
+		}
+
+		return true;
+	}
+};
+
+#+END_SRC
+
+

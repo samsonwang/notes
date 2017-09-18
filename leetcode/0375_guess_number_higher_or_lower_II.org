@@ -1,0 +1,122 @@
+
+* question
+
+
+
+
+* guess
+- 这道题是0374的姊妹题，在一开始思考的时候容易沿用0374的思路而造成结题失败
+- 这道题比我想象的要复杂
+- 我是在看到答案之后才意识到这是个DP问题的，之前对DP问题的研究也比较少
+
+
+* solution 1 (leetcode)
+
+#+BEGIN_SRC java
+public class Solution {
+    public int getMoneyAmount(int n) {
+        // all intervals are inclusive
+        // uninitialized cells are assured to be zero
+        // the zero column and row will be uninitialized
+        // the illegal cells will also be uninitialized
+        // add 1 to the length just to make the index the same as numbers used
+        // dp[i][j] means the min cost in the worst case for numbers (i...j)
+        int[][] dp = new int[n + 1][n + 1]; 
+
+        // iterate the lengths of the intervals since the calculations of
+        // longer intervals rely on shorter ones
+        for (int l = 2; l <= n; l++) {
+            // iterate all the intervals with length l, the start of which is i.
+            // Hence the interval will be [i, i + (l - 1)]
+            for (int i = 1; i <= n - (l - 1); i++) {
+                dp[i][i + (l - 1)] = Integer.MAX_VALUE;
+                // iterate all the first guesses g
+                for (int g = i; g <= i + (l - 1); g++) {
+                    int costForThisGuess;
+                    // since if g is the last integer, g + 1 does not exist,
+                    // we have to separate this case
+                    // cost for [i, i + (l - 1)]: g (first guess) + max{the cost of left part [i, g - 1], the cost of right part [g + 1, i + (l - 1)]}
+                    if (g == n) {
+                        costForThisGuess = dp[i][g - 1] + g;
+                    } else {
+                        costForThisGuess = g + Math.max(dp[i][g - 1], dp[g + 1][i + (l - 1)]);
+                    }
+                    dp[i][i + (l - 1)] = Math.min(dp[i][i + (l - 1)], costForThisGuess); // keep track of the min cost among all first guesses
+                }
+            }
+        }
+        return dp[1][n];
+    }
+}
+#+END_SRC
+
+* solution 2 (leetcode)
+
+#+BEGIN_SRC java
+public class Solution {
+    public int getMoneyAmount(int n) {
+        if (n == 1) {
+            return 0;
+        }
+        int[][] dp = new int[n + 1][n + 1];
+        for (int jminusi = 1; jminusi < n; jminusi++) {
+            for (int i = 0; i + jminusi <= n; i++) {
+                int j = i + jminusi;
+                dp[i][j] = Integer.MAX_VALUE;
+                for (int k = i; k <= j; k++) {
+                    dp[i][j] = Math.min(dp[i][j],
+                       k + Math.max(k - 1 >= i ? dp[i][k - 1] : 0,
+                       j >= k + 1 ? dp[k + 1][j] : 0));
+                }
+            }
+        }
+        return dp[1][n];
+    }
+}
+#+END_SRC
+
+* leetcode 3 (leetcode)
+
+#+BEGIN_SRC java
+public class Solution {
+    public int getMoneyAmount(int n) {
+        int[][] table = new int[n+1][n+1];
+        return DP(table, 1, n);
+    }
+    
+    int DP(int[][] t, int s, int e){
+        if(s >= e) return 0;
+        if(t[s][e] != 0) return t[s][e];
+        int res = Integer.MAX_VALUE;
+        for(int x=s; x<=e; x++){
+            int tmp = x + Math.max(DP(t, s, x-1), DP(t, x+1, e));
+            res = Math.min(res, tmp);
+        }
+        t[s][e] = res;
+        return res;
+    }
+}
+
+// buttom up solution
+public class Solution {
+    public int getMoneyAmount(int n) {
+        int[][] table = new int[n+1][n+1];
+        for(int j=2; j<=n; j++){
+            for(int i=j-1; i>0; i--){
+                int globalMin = Integer.MAX_VALUE;
+                for(int k=i+1; k<j; k++){
+                    int localMax = k + Math.max(table[i][k-1], table[k+1][j]);
+                    globalMin = Math.min(globalMin, localMax);
+                }
+                table[i][j] = i+1==j?i:globalMin;
+            }
+        }
+        return table[1][n];
+    }
+}
+
+#+END_SRC
+
+
+
+

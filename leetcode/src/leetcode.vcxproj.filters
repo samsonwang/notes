@@ -66,6 +66,27 @@
     <ClInclude Include="0643_maximum_average_subarray_I.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="0633_sum_of_square_numbers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="0389_find_the_difference.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="0383_ransom_note.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="0168_excel_sheet_column_title.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="0374_guess_number_higher_or_lower.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="0375_guess_number_higer_or_lower.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="0371_sum_of_two_integers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompiled.cpp">
