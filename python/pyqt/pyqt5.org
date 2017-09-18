@@ -4,8 +4,8 @@
 
 
 
-** ��Ҫʹ��SIP
-����ʵ��Python�е���C/C++��ģ��
+** 需要使用SIP
+用来实现Python中调用C/C++的模块
 
 
 
