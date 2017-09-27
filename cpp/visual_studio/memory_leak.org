@@ -1,0 +1,26 @@
+
+
+* 内存泄漏的排查思路
+
+
+** 使用ctrdbg
+
+- 示例代码
+
+#+BEGIN_SRC c++
+#define _CRTDBG_MAP_ALLOC
+#include <stdlib.h>
+#include <crtdbg.h>
+#define CHECK_MEMORY_LEAKS_NEW new(_NORMAL_BLOCK, __FILE__, __LINE__)
+#define new CHECK_MEMORY_LEAKS_NEW
+#+END_SRC
+
+
+** 使用VLD - visual Leak Dector
+
+** 
+
+
+
+
+
