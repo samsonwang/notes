@@ -1,12 +1,12 @@
 
 
-* 内存泄漏的排查思路
+* windows下内存泄漏的排查思路
 
 
 ** 使用ctrdbg
 
-- 示例代码
-
+*** 示例代码
+在所有cpp中加入如下代码段
 #+BEGIN_SRC c++
 #define _CRTDBG_MAP_ALLOC
 #include <stdlib.h>
@@ -16,9 +16,26 @@
 #+END_SRC
 
 
+*** 注意事项
+- 可以增加 =_CrtDumpMemoryLeaks()= 将当前未释放的内存打印出来
+  + 注意，如果将这句话放在main函数中，会将main函数中的使用到的堆区内存也打印出来
+  + 在 =main= 中调用时，全局变量由于会在 =main= 结束之后才会析构，
+    所以其中管理的堆区内存，也会被识别为未释放
+  + 可以使用 =atexit()= 函数设置一个程序退出时进行内存打印
+    =atexit= 函数可以重复调用，后来注册的函数会在退出时首先执行
+    这个方法在貌似并不能避免全局变量带来的误报，一些全局变量和静态变量并没有
+    在 =atexit= 指定的函数执行时析构并进行资源释放
+
+#+BEGIN_SRC c++
+#include<cstdlib>
+int atexit(*func);
+#+END_SRC
+
+*** 
+
 ** 使用VLD - visual Leak Dector
 
-** 
+
 
 
 
