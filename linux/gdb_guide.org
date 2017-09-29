@@ -1,0 +1,45 @@
+
+* gdb 基础教学
+
+
+** core 文件相关设置
+- 使用以下指令查看有关core文件的相关设置
+  + =limit -c=
+    用于查看当前系统生成core文件的大小限制，如果设置为0，则表示不生成core文件
+  + =cat /proc/sys/kernel/core_pattern=
+    用于查看当前系统生成core文件的命名样式
+
+- 以下命令能够更改有关core文件的相关设置
+
+  + =limit -c unlimited= 不限制生成core文件的大小
+  + =echo "core.%e.%p" > /proc/sys/kernel/core_pattern= 修改core文件命名规则
+
+- 使该配置重启后仍然有效
+  把下面这句话添加到 =/etc/sysctl.conf= 中，能够使该设置在系统重启后仍然生效
+  #+BEGIN_SRC
+  # core dump pattern
+  kernel.core_pattern=core.%p.%e.%s  
+  #+END_SRC
+
+
+
+
+** 启动 gdb
+- 对于生成的core文件可以使用以下指令
+  =gdb appname corename=
+
+- 使用gdb模式开启一个新的进程
+
+
+** gdb模式中常用命令
+- =bt= backtrace
+- =i r= info registers 查看寄存器
+- =i proc m= memory mappings
+- =b= breakpoint
+- =r= run
+- =c= continue
+- =si= step in
+
+
+
+
