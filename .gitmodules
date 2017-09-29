@@ -4,9 +4,6 @@
 [submodule "linux/APUE_3e"]
 	path = linux/APUE_3e
 	url = git@github.com:samsonwang/APUE_3e.git
-[submodule "growth"]
-	path = growth
-	url = git@github.com:samsonwang/growth.git
 [submodule "network/UNP_3e"]
 	path = network/UNP_3e
 	url = git@github.com:samsonwang/UNP_3e.git
