@@ -1,0 +1,31 @@
+
+
+* shell 文档编辑
+
+** col
+- 参数
+  + =-b= 过滤掉所有的控制字符，包括RLF和HRLF
+  + =-f= 过滤RLF字符，但允许将HRLF字符呈现出来
+    其中 =RLF= 逆向换行符 Reverse/Restore Line Feed
+        =HRLF= 半逆向换行符 Half Reverse Line Feed
+  + =-x= 以多个空客字符来表示跳格字符
+  + =-l= 自行指定缓存区大小
+- 实例
+  - =man man | col -b > man_help=
+    该指令将 =man= 命令的帮助文档保存为 =man_help= , 使用 =-b= 参数过滤了所有的控制字符
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
