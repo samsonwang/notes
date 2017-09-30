@@ -1,0 +1,57 @@
+
+
+* friend function 友元函数
+
+** 友元函数注意事项
+1. 必须在类的说明中说明友元函数，说明时以关键字friend开头，后跟友元函数的函数原型，
+   友元函数的说明可以出现在类的任何地方，包括在private和public部分；
+2. 注意友元函数不是类的成员函数，所以友元函数的实现和普通函数一样，
+   在实现时不用"::"指示属于哪个类，只有成员函数才使用"::"作用域符号；
+3. 友元函数不能直接访问类的成员，只能访问对象成员
+4. 友元函数可以访问对象的私有成员，但普通函数不行；
+5. 调用友元函数时，在实际参数中需要指出要访问的对象，
+6. 类与类之间的友元关系不能继承。
+7. 一个类的成员函数也可以作为另一个类的友元，但必须先定义这个类。
+
+
+** 友元函数代码示例
+#+BEGIN_SRC c++
+#include <iostream>
+using namespace std;
+
+class Box {
+  double width;
+
+public:
+  friend void printWidth( Box box );
+  void setWidth( double wid );
+};
+
+// Member function definition
+void Box::setWidth( double wid ) {
+   width = wid;
+}
+
+// Note: printWidth() is not a member function of any class.
+void printWidth( Box box ) {
+   /* Because printWidth() is a friend of Box, it can
+   directly access any member of this class */
+   cout << "Width of box : " << box.width <<endl;
+}
+
+// Main function for the program
+int main() {
+   Box box;
+
+   // set box width without member function
+   box.setWidth(10.0);
+
+   // Use friend function to print the wdith.
+   printWidth( box );
+
+   return 0;
+}
+
+#+END_SRC
+
+
