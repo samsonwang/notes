@@ -3,6 +3,7 @@
 * shell 文档编辑
 
 ** col
+- 过滤输入的控制字符
 - 参数
   + =-b= 过滤掉所有的控制字符，包括RLF和HRLF
   + =-f= 过滤RLF字符，但允许将HRLF字符呈现出来
@@ -11,10 +12,22 @@
   + =-x= 以多个空客字符来表示跳格字符
   + =-l= 自行指定缓存区大小
 - 实例
-  - =man man | col -b > man_help=
+  + =man man | col -b > man_help=
     该指令将 =man= 命令的帮助文档保存为 =man_help= , 使用 =-b= 参数过滤了所有的控制字符
 
 
+** csplit
+- 功能
+  根据行号将文件分割成若干个文件，输入的文件会保留（不会更改源文件）
+
+- 参数
+  + =-f= 为分割后的文件增加前缀
+  + =-q= 或 =-s= 或 =--silent= 不显示指令执行过程
+  + =-z= 或 =--elide-empty-files= 删除长度为0byte的文件
+
+- 实例
+  + =csplit -f test testfile 2 4 6=
+    将testfile按照行号2 4 6分割成文件
 
 
 
