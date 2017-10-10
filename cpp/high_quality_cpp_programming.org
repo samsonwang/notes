@@ -1,0 +1,123 @@
+
+
+* 高质量C++编程指南
+
+
+** 关于返回值问题
+- 如果函数的返回值是一个对象，有些场合用“引用传递”替换“值传递”可以提高效率。
+  而有些场合只能用“值传递”而不能用“引用传递” ，否则会出错。
+
+
+#+BEGIN_SRC c++
+class String 
+{
+  // 赋值函数
+  String& operate=(const String &other);   
+  // 相加函数，如果没有 friend 修饰则只许有一个右侧参数 
+friend String operate+( const String &s1, const String &s2);   
+private: 
+ char *m_data;  
+}
+
+String& String::operate=(const String &other)
+{
+  if (this == &other) 
+    return *this;
+
+  delete m_data; 
+  m_data = new char[strlen(other.data)+1]; 
+  
+  strcpy(m_data, other.data);
+  return *this; //  返回的是 *this 的引用，无需拷贝过程 
+}
+
+
+String operate+(const String &s1, const String &s2)     
+{ 
+  String temp;
+  delete temp.data;  // temp.data 是仅含‘\0’的字符串 
+  
+  temp.data = new char[strlen(s1.data) + strlen(s2.data) +1];
+  strcpy(temp.data, s1.data);
+  strcat(temp.data, s2.data);
+  return temp;
+}
+
+#+END_SRC
+
+
+- 对于赋值函数，应当用“引用传递”的方式返回 String 对象。如果用“值传递”的
+  方式，虽然功能仍然正确，但由于 return 语句要把 *this 拷贝到保存返回值的外部存储
+  单元之中，增加了不必要的开销，降低了赋值函数的效率。例如：
+  String a,b,c; 
+  a = b;      //  如果用“值传递” ，将产生一次 *this  拷贝 
+  a = b = c;  //  如果用“值传递” ，将产生两次 *this  拷贝 
+
+
+- 对于相加函数，应当用“值传递”的方式返回 String 对象。如果改用“引用传递” ，
+  那么函数返回值是一个指向局部对象 temp 的“引用” 。由 于 temp 在函数结束时被自动销
+  毁，将导致返回的“引用”无效。例如： 
+  =c = a + b;=
+  此时  a + b  并不返回期望值，c 什么也得不到，流下了隐患。 
+
+
+** 使用数组作为函数的参数
+注意当数组作为函数的参数进行传递时，该数组自动退化为同类型的指针。
+
+#+BEGIN_SRC c++
+void Func(char a[100]) 
+{ 
+  cout<< sizeof(a) << endl;  // 4 字节而不是 100 字节 
+} 
+#+END_SRC
+
+
+** 区分成员函数的重载、覆盖和隐藏
+
+覆盖 override
+
+
+成员函数被重载的特征： 
+（1）相同的范围（在同一个类中） ； 
+（2）函数名字相同； 
+（3）参数不同； 
+（4）virtual 关键字可有可无。 
+覆盖是指派生类函数覆盖基类函数，特征是： 
+（1）不同的范围（分别位于派生类与基类） ； 
+（2）函数名字相同； 
+（3）参数相同； 
+（4）基类函数必须有 virtual 关键字。 
+
+
+令人迷惑的隐藏规则 
+  本来仅仅区别重载与覆盖并不算困难， 但是 C++的隐藏规则使问题复杂性陡然增加。
+这里“隐藏”是指派生类的函数屏蔽了与其同名的基类函数，规则如下： 
+（1）如果派生类的函数与基类的函数同名，但是参数不同。此时，不论有无 virtual 关
+键字，基类的函数将被隐藏（注意别与重载混淆） 。 
+（2）如果派生类的函数与基类的函数同名，并且参数也相同，但是基类函数没有 virtual
+关键字。此时，基类的函数被隐藏（注意别与覆盖混淆） 。
+
+
+** 关于内联函数的细节
+
+- 关键字 inline 必须与函数定义体放在一起才能使函数成为内联，仅将 inline 放在函
+  数声明前面不起任何作用。如下风格的函数 Foo 不能成为内联函数：
+
+  =inline void Foo(int x, int y);=    // inline 仅与函数声明放在一起 
+
+  而如下风格的函数 Foo 则成为内联函数： 
+  void Foo(int x, int y);    
+  inline void Foo(int x, int y) // inline 与函数定义体放在一起 
+  { 
+  … 
+  } 
+
+- 所以说，inline 是一种“用于实现的关键字” ，而不是一种“用于声明的关键字” 。
+  一般地，用户可以阅读函数的声明，但是看不到函数的定义。
+  尽管在大多数教科书中内联函数的声明、定义体前面都加了 inline 关键字，
+  但我认为 inline 不应该出现在函数的声明中。
+  这个细节虽然不会影响函数的功能，但是体现了高质量 C++/C 程序设计风格的一个基本原则：
+  声明与定义不可混为一谈，用户没有必要、也不应该知道函数是否需要内联。 
+
+
+
