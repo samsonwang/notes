@@ -1,0 +1,29 @@
+
+
+* 回环ip相关知识点
+
+Establishing a network connection to the 127.0.0.1 loopback address is accomplished in the same manner as establishing one with any remote computer or device on the network. The primary difference is that the connection avoids using the local network interface hardware. 
+
+回环ip不走硬件，即使没有网卡，也能够使用该ip进行通信
+
+
+
+The advantage of a loopback interface is, that it will never go down (until explicit set to shutdown). And that is exactly the use case of a loopback interface: whenever you want to use an interface, which never goes down, you will use a loopback interface. Think of  management access to a device, which is redundantly connected via different interfaces and can be reached through different links. If you use on of the interface addresses of physical interfaces and that interface goes down (for example because of a cabling issue or because the device connected to that interface is down or ...). You can't reach that ip address anymore, because the interface holding that ip address is down. The device would be still reachable, but not under this ip address. So if we don't want to change management ip addresses every time an interface goes down, we wnt to use am ip address, which is reachable independently from a specific physical interface, and the loopback ip address is such an address (because loopback interface never goes down, until we do an explicit shutdown on that interface). Also loopback interfaces will be used for iBGP (where we typically also have redundant connections between iBGP peers, and we don't want the BGP session going down, if one physical interface is down, but the machine would be still reachable). So we also use here an ip address from an interface, that will never go down: an ip address from a loopback interface.
+
+
+Even VLAN interfaces may go down due to network issues (for example if all ports forwarding that VLAN are down). Loopback interfaces will only go down, if explicitely set to shutdown, otherwise they stay up as long as the device is up. If you have a switch with more than one layer3 interface, and you have set up routing in a way, that the switch is still reachable for management if any of the layer3 interfaces is down (but not
+all), a loopback interface may still be reachable, so it may be a good idea to use that loopback interface instead of a VLAN interface for management even on switches ... But it depends on your specific topology.
+
+
+
+https://askubuntu.com/questions/247625/what-is-the-loopback-device-and-how-do-i-use-it
+
+
+
+
+使用loopback ip进行通信与使用unix socket进行通信，从效率上讲，是否有区别
+
+
+注意localhost 关键字
+
+
