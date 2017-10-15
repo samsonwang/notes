@@ -1,0 +1,17 @@
+
+* git shell alias
+
+在终端中使用git时的常用快捷命令
+
+# git related
+alias g='git status --short -b'
+alias ga='git add'
+alias gb='git branch'
+alias gc='git commit -m'
+alias gd='git diff'
+alias gdc='git diff --cached'
+alias gco='git checkout'
+alias gps='git push'
+alias gpl='git pull'
+
+
