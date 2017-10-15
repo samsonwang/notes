@@ -1,0 +1,11 @@
+
+
+* How to make an alias in bash shell in OS X terminal
+
+macOS系统自带终端的配置文件为 =~/.bash_profile=
+
+
+
+
+
+
