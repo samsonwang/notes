@@ -1,0 +1,13 @@
+
+* apache http server
+
+** 在windows下配置和启动 =apache http server= 的方法
+
+- windows下有托盘图标，可以方便地启动和关闭 http server
+- windows下的配置，需要修改 =conf/httpd.conf= 文件
+  启动需要调整的是 =Documentroot= 和 =Directory= 配置项
+  将它调整为所开发网站的目录
+
+
+
+

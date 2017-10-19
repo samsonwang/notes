@@ -1,0 +1,14 @@
+
+
+* front end note
+
+** javascript 中 =xxx.js= 和 =xxx.min.js= 的关系
+- 二者具有相同功能
+- =min.js= 的可读性稍差
+- =min.js= 是 =.js= 经过压缩后的javascript文件
+  目的应该是方便网络传输
+  
+
+
+
+
