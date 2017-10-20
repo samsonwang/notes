@@ -38,8 +38,20 @@
 - =b= breakpoint
 - =r= run
 - =c= continue
-- =si= step in
+- =s= step in
+- =info= info指令之后可以接
 
+
+** gdb attach / debug a running process / 调试一个正在运行中的进程
+
+- 方法1：使用 =gdb -p <pid>= 命令来以attach的方式启动调试该进程id的进程
+
+- 方法2：进入 =gdb= 模式，使用 =attach <pid>= 命令调试，某个进程
+
+** gdb调试时设置源文件的目录
+
+- =files= 命令
+- =directory= 命令
 
 
 
