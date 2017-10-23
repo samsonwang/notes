@@ -1,0 +1,93 @@
+
+
+
+* bat script编写教程
+** 基本语法
+echo 表示显示此命令后的字符
+echo off/on 表示在此语句后所有运行的命令都不显示命令行本身
+@与echo off 相似 仅针对当前行有效
+call 调用另一个批处理文件（如果不用call而直接调用别的批处理文件，那么执行完那个批处理文件后将无法返回当前文件并执行当前文件的后续命令）
+
+** 批处理文件的参数
+%[1-9]表示批处理文件的参数
+变量可以从%0到%9，%0表示批处理命令本身，其他参数字符串用%1到%9顺序表示。
+
+
+** 特殊命令
+*** if 条件语句
+**** if [not] "param"=="a" format a:
+**** if [not] exist c:\config.sys
+**** if errorlevel 2 goto x2
+很多DOS程序在运行结束后会返回一个数字值用来表示程序运行的结果（或状态），通过if errorlevel 命令可以判断程序的返回值，根据不同的返回值来决定不同的命令（返回值必须按照从大到小的顺序排列）。
+
+
+*** goto 跳转命令
+批处理文件运行到这里将跳到goto所指定的标号
+goto end
+:end
+
+
+*** choice 采集键盘输入
+使用此命令可以让用户输入一个字符（用于选择），从而根据用户的选择返回不同的errorlevel，然后用于if errorlevel配合，根据用户的选择运行不同的命令。
+注意：choice命令为dos或者windos系统提供的外部命令，不同版本的choice命令语法会稍有不同
+使用choice /? 查看用法
+
+@echooff choice/Cdme/M"defrag,mem,end"
+if errorlevel 3 goto end
+if errorlevel 2 goto mem
+if errotlevel 1 goto defrag
+:defrag
+c:\dos\defrag
+goto end
+:mem
+mem
+goto end:
+end 
+echo goodbye
+
+
+*** for 循环命令
+for %%variable in (set) do command [command-parameters]
+- %%variable 指定一个单一字母可替换的参数
+- (set) 指定一个或一组文件，可以使用通配符
+- command 指定对每个文件执行的命令
+- command-parameters 为特定命令指定参数或命令开关
+
+**** 示例
+for %%c in (*.bat *.txt) do type %%c
+该命令会显示当前目录下所有以bat和txt为拓展名的文件内容
+
+
+*** xcopy 文件拷贝命令
+0成功拷贝文件
+1未找到拷贝文件
+2用户通过ctrl-c中止拷贝操作
+4预置错误阻止文件拷贝操作
+5拷贝过程中写盘错误
+
+
+*** call 命令
+从一个批处理程序调用另一个批处理程序，并且不终止父批处理程序，
+call命令接受用用作目标的标签。
+如果在脚本或批处理文件外使用call，它将不会在命令行起作用。
+
+*** start 命令
+调用外部程序，所有的dos命令和命令行程序都可以由start命令来调用
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
