@@ -1,0 +1,23 @@
+
+
+* use git with proxy
+Sometimes, we can not reach github duel to network policy.
+we could use proxy when push and pull from remote repo.
+
+** setup proxy for git
+example code for http and https proxy.
+
+#+BEGIN_SRC sh
+git config --global http.proxy 'socks5://127.0.0.1:1080'
+git config --global https.proxy 'socks5://127.0.0.1:1080'
+#+END_SRC
+
+** cache username and password
+cache username and password when use https.
+#+BEGIN_SRC sh
+git config --global credential.helper wincred
+git config --global credential.helper cache
+#+END_SRC
+
+
+
