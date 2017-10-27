@@ -1,0 +1,33 @@
+#+BEGIN_COMMENT
+.. title: 
+.. slug: 
+.. date: 2017-10-27 09:25:25 UTC+08:00
+.. tags: nikola
+.. category: 
+.. link: 
+.. description: 
+.. type: text
+#+END_COMMENT
+
+* 使用emacs作为c++开发环境
+在做C++开发时，准备从VS向emacs迁移，思考总结一下目前emacs的配置中有哪些带实现的特性。
+这些特性功能是我在VS的开发中经常能够使用到的。
+
+* 待实现功能
+- 代码自动补全
+  前端：helm-gtags
+  后端：ctags, gtags
+- 显示光标所在处的变量或函数名的注释信息（提示信息）
+- 函数或变量在声明与实现之间相互跳转
+- 前向跳转或后向跳转
+- 打开对应的cpp或h文件
+- 打开光标所在头文件或实现文件
+- 批量修改函数或变量的名称
+- 语法静态检查工具
+  cppcheck
+
+
+
+
+
+
