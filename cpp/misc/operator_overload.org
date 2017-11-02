@@ -1,0 +1,29 @@
+#+BEGIN_COMMENT
+.. title: 前++与后++运算符重载的思考
+.. slug: cpp-operator-overload
+.. date: 2017-11-02 15:31:25 UTC+08:00
+.. tags: cpp, operator overload
+.. category: 
+.. link: 
+.. description: 
+.. type: text
+#+END_COMMENT
+
+
+* 前++与后++运算符重载的思考
+c++中的自增运算符有前++和后++两种，两种运算符的功能相似，但其中却有很多值得思考的问题。
+
+** 关于两种运算符重载的实现形式
+
+
+** map迭代器中的++运算符
+
+- map迭代器在进行erase操作时容易出现迭代器失效的问题
+
+  =it = map.erase(it);= 这种写法只有在c++11以后才出现
+
+
+
+
+
+
