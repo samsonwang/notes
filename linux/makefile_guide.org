@@ -10,4 +10,24 @@ Makefile
 
 
 
+** wildcard 函数
+- =$(wildcard pattern)= 自动识别规则
+
+- =$(wildcard *.c)= 获取所有c文件
+- =$(pathsubst %.c,%.o,$(wildcard *.c))= 将所有的c文件翻译成对应的o文件
+
+完整示例
+#+BEGIN_SRC makefile
+SRC = $(wildcard src/*.cpp)
+OBJ = $(patsubst src/%.cpp, obj/%.o, $(SRC))
+
+prog: $(OBJ)
+  $(CC) $(CFLAGS) $(LDFLAGS) $(LIBS) $(OBJ) -o prog 
+
+obj/%.o: src/%.cpp
+  $(CC) $(CFLAGS) -c $< -o $@
+#+END_SRC
+
+
+
 
