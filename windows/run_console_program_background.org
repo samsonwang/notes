@@ -1,0 +1,72 @@
+
+* windows command line tool
+
+- 以后台的方式启动一个进程，类似linux终端下的 =&= 符号，使程序能够在后台运行
+
+
+- 以下代码能够意detach的方式启动一个进程，
+  目的为在退出windows command line之后,
+  这个进程能够继续执行
+
+#+BEGIN_SRC c++
+
+#include <windows.h> 
+#include <stdio.h> 
+#include <tchar.h> 
+int _tmain() 
+{ 
+    char * pCmd = ::GetCommandLine(); 
+    // skip the executable 
+    if (*pCmd++ == L'"')
+    {
+        while (*pCmd++ != L'"'); 
+    }
+    else 
+    {
+        while (*pCmd != NULL && *pCmd != L' ') 
+            ++pCmd; 
+    }
+
+    while (*pCmd == L' ')
+        pCmd++; 
+
+    STARTUPINFO si; 
+    ZeroMemory( &si, sizeof(si) ); 
+    si.cb = sizeof(si); 
+    PROCESS_INFORMATION pi; 
+    ZeroMemory( &pi, sizeof(pi) ); 
+
+    // Start the child process. 
+    BOOL result = CreateProcess 
+    ( 
+        NULL, // No module name (use command line) 
+        pCmd, // Command line 
+        NULL, // Process handle not inheritable 
+        NULL, // Thread handle not inheritable 
+        FALSE, // Set bInheritHandles to FALSE 
+        DETACHED_PROCESS, // Detach process 
+        NULL, // Use parent's environment block 
+        NULL, // Use parent's starting directory 
+        &si, // Pointer to STARTUPINFO structure 
+        &pi // Pointer to PROCESS_INFORMATION structure (returned) 
+    ); 
+    if (result) return 0; 
+
+    char msg[2048]; 
+    FormatMessage 
+    ( 
+        FORMAT_MESSAGE_FROM_SYSTEM, 
+        NULL, 
+        ::GetLastError(), 
+        MAKELANGID(LANG_NEUTRAL, SUBLANG_SYS_DEFAULT), 
+        msg, sizeof(msg), 
+        NULL 
+    ); 
+    fputs(msg, stderr); 
+    _flushall(); 
+
+    return -1; 
+}
+
+#+END_SRC
+

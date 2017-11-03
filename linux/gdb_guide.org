@@ -1,8 +1,21 @@
+#+BEGIN_COMMENT
+.. title: linux下使用gdb的调试技巧
+.. slug: debug-with-gdb-on-linux
+.. date: 2017-10-24 8:58:25 UTC+08:00
+.. tags: linux, gdb
+.. category: 
+.. link: 
+.. description: 
+.. type: text
+#+END_COMMENT
 
-* gdb 基础教学
 
+** linux下使用gdb的调试技巧
 
-** core 文件相关设置
+在调试 =C/C++= 代码时，在编译阶段使用 =gcc/g++ -g= 命令编译，将调试信息生成在目标文件中。
+
+*** core 文件相关设置
+core文件是程序异常崩溃以后，会将程序异常时的
 - 使用以下指令查看有关core文件的相关设置
   + =limit -c=
     用于查看当前系统生成core文件的大小限制，如果设置为0，则表示不生成core文件
@@ -10,36 +23,48 @@
     用于查看当前系统生成core文件的命名样式
 
 - 以下命令能够更改有关core文件的相关设置
-
   + =limit -c unlimited= 不限制生成core文件的大小
   + =echo "core.%e.%p" > /proc/sys/kernel/core_pattern= 修改core文件命名规则
-
-- 使该配置重启后仍然有效
-  把下面这句话添加到 =/etc/sysctl.conf= 中，能够使该设置在系统重启后仍然生效
-  #+BEGIN_SRC
-  # core dump pattern
-  kernel.core_pattern=core.%p.%e.%s  
-  #+END_SRC
-
-
+    core文件会默认生成在用户 =HOME= 路径中
+  + 使core相关配置重启后仍然有效
+    把下面这句话添加到 =/etc/sysctl.conf= 中，能够使该设置在系统重启后仍然生效
+    #+BEGIN_SRC shell
+    # core dump pattern
+    kernel.core_pattern=core.%p.%e.%s  
+    #+END_SRC
 
 
-** 启动 gdb
+
+*** gdb 基础
+
+**** 启动 gdb
 - 对于生成的core文件可以使用以下指令
   =gdb appname corename=
 
 - 使用gdb模式开启一个新的进程
 
 
-** gdb模式中常用命令
+**** gdb模式中常用命令
 - =bt= backtrace
 - =i r= info registers 查看寄存器
 - =i proc m= memory mappings
 - =b= breakpoint
 - =r= run
 - =c= continue
-- =si= step in
+- =s= step in
+- =info= info指令之后可以接
 
+
+**** gdb attach / debug a running process / 调试一个正在运行中的进程
+
+- 方法1：使用 =gdb -p <pid>= 命令来以attach的方式启动调试该进程id的进程
+
+- 方法2：进入 =gdb= 模式，使用 =attach <pid>= 命令调试，某个进程
+
+**** gdb调试时设置源文件的目录
+
+- =files= 命令
+- =directory= 命令
 
 
 

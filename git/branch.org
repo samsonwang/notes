@@ -1,0 +1,23 @@
+
+
+* git checkout remote branch
+
+直接创建分支并checkout到分支
+git checkout -b <loccalbranchname> origin/<branchname>
+
+
+先创建分支再checkout到分支
+git branch branchxyz origin/branchxyz
+git checkout branchxyz
+
+
+* git delete local branch
+git branch -d <local_branch_name>
+
+
+* git delete remote branch
+git push <remote_name> --delete <branch_name>
+
+
+
+
