@@ -1,0 +1,23 @@
+
+
+* QtConCurrent
+Qt多线程编程
+
+** QtConCurrent::Run
+=QFuture<T> run(Function function)=
+在一个单独的线程中运行该函数，函数的返回值能够通过QFuture获得。
+
+示例代码如下：
+#+BEGIN_SRC c++
+extern QString someFunction(const QByteArray &input);
+QByteArray bytearray = "...";
+QFuture<QString> future = QtConcurrent::run(someFunction, bytearray);
+QString result = future.result();
+#+END_SRC
+
+=QFuture::result()= 是一个阻塞函数，可以使用 =QFutureWatcher= 来监视函数执行是否完成。
+
+
+
+
+
