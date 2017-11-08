@@ -1,0 +1,42 @@
+#+BEGIN_COMMENT
+.. title: time related data structures and functions
+.. slug: time-related-data-structures-and-functions
+.. date: 2017-10-01 21:58:25 UTC+08:00
+.. tags: nikola
+.. category: 
+.. link: 
+.. description: 
+.. type: text
+#+END_COMMENT
+
+* time related data structures and functions
+
+** time data structures
+- time_t
+距离1970年1月1日的秒数
+
+- timeval
+在秒的基础上增加了微秒
+typedef struct timeval {
+  long tv_sec;
+  long tv_usec;
+} timeval;
+
+- timespec
+在秒的基础上增加了纳秒
+typedef struct timespec {
+  time_t tv_sec;
+  long   tv_nsec;
+} timespec;
+
+** time functions
+
+#+BEGIN_SRC c
+
+#include <time.h>
+
+struct tm* localtime(const time_t* time);
+
+#+END_SRC
+
+
