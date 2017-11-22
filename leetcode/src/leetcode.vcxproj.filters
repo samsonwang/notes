@@ -87,6 +87,9 @@
     <ClInclude Include="0371_sum_of_two_integers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="0414_third_maximum_number.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PreCompiled.cpp">
