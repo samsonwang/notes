@@ -1,6 +1,6 @@
 #+BEGIN_COMMENT
-.. title: 
-.. slug: 
+.. title: emacs as cpp devenv
+.. slug: emacs-as-cpp-devenv
 .. date: 2017-10-27 09:25:25 UTC+08:00
 .. tags: nikola
 .. category: 
@@ -15,14 +15,28 @@
 
 * 待实现功能
 - 代码自动补全
-  前端：helm-gtags
-  后端：ctags, gtags
+  前端： =company= =helm-gtags=
+  后端： =clang=
+
 - 显示光标所在处的变量或函数名的注释信息（提示信息）
+
 - 函数或变量在声明与实现之间相互跳转
+  使用 =global=  做代码索引，使用 =helm-gtags= 做交互前端
+
 - 前向跳转或后向跳转
+  对于变量推荐使用 =helm-gtags-find-symbol=
+  
+
 - 打开对应的cpp或h文件
+  使用emacs自带的 =ff-find-related-file=
+
+
 - 打开光标所在头文件或实现文件
+
+
 - 批量修改函数或变量的名称
+
+
 - 语法静态检查工具
   cppcheck
 
