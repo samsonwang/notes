@@ -1,37 +1,35 @@
 #+BEGIN_COMMENT
 .. title: GCC编译时的警告（warn）相关参数
 .. slug: gcc-warn-on-compile
-.. date: 2017-12-31 09:51:01 UTC+0800
-.. tags: GCC Makefile
+.. date: 2017-12-31 09:51:01 UTC+08:00
+.. tags: GCC, Makefile
 .. category: 
 .. link: 
 .. description: 
 .. type: text
 #+END_COMMENT
 
-
-* GCC编译时的警告（warn）相关参数
-
 编译阶段警告信息有助于排查代码中错误，合理配置编译警告信息能够提高开发效率。
 
-参考资料
-https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html
+*** =-fsyntax-only=
+    检查代码中的语法错误，但是不做任何处理
 
-- =-fsyntax-only=
-检查代码中的语法错误，但是不做任何处理
 
-- =-w=
-禁止所有的报警信息
+*** =-w=
+    禁止所有的报警信息
+  
 
-- =-Werror=
-将所有的警告视为错误
+*** =-Werror=
+    将所有的警告视为错误
 
-- =-Wfatal-errors=
-在第一条错误信息停止编译
 
-- =-Wall= 
-启用以下警告
-#+BEGIN_SRC 
+*** =-Wfatal-errors=
+    在第一条错误信息停止编译
+
+
+*** =-Wall= 
+    启用以下警告
+#+BEGIN_SRC makefile
 -Waddress   
 -Warray-bounds=1 (only with -O2)  
 -Wbool-compare  
@@ -84,10 +82,9 @@ https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html
 #+END_SRC
 
 
-
-- =-Wextra=
-启用以下警告
-#+BEGIN_SRC 
+*** =-Wextra=
+    启用以下警告
+#+BEGIN_SRC makefile
 -Wclobbered  
 -Wcast-function-type  
 -Wempty-body  
@@ -105,15 +102,20 @@ https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html
 -Wunused-but-set-parameter (only with -Wunused or -Wall)  
 #+END_SRC
 
-- =-Wdelete-incomplete=
-(C++ and Objective-C++ only)
-析构一个指向不完整的类型的指针，可能会造成运行时错误未定义行为。
-这个警告默认是开启的。
 
-- =-Wuseless-cast=
-(C++ and Objective-C++ only)
-变量被转换为自身类型
+*** =-Wdelete-incomplete=
+    (C++ and Objective-C++ only)
+    析构一个指向不完整的类型的指针，可能会造成运行时错误未定义行为。
+    这个警告默认是开启的。
 
+
+*** =-Wuseless-cast=
+    (C++ and Objective-C++ only)
+    变量被转换为自身类型。
+
+
+** 参考资料
+https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html
 
 
 
