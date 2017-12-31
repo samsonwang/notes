@@ -1,0 +1,119 @@
+#+BEGIN_COMMENT
+.. title: GCC编译时的警告（warn）相关参数
+.. slug: gcc-warn-on-compile
+.. date: 2017-12-31 09:51:01 UTC+0800
+.. tags: GCC Makefile
+.. category: 
+.. link: 
+.. description: 
+.. type: text
+#+END_COMMENT
+
+
+* GCC编译时的警告（warn）相关参数
+
+编译阶段警告信息有助于排查代码中错误，合理配置编译警告信息能够提高开发效率。
+
+参考资料
+https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html
+
+- =-fsyntax-only=
+检查代码中的语法错误，但是不做任何处理
+
+- =-w=
+禁止所有的报警信息
+
+- =-Werror=
+将所有的警告视为错误
+
+- =-Wfatal-errors=
+在第一条错误信息停止编译
+
+- =-Wall= 
+启用以下警告
+#+BEGIN_SRC 
+-Waddress   
+-Warray-bounds=1 (only with -O2)  
+-Wbool-compare  
+-Wbool-operation  
+-Wc++11-compat  -Wc++14-compat  
+-Wcatch-value (C++ and Objective-C++ only)  
+-Wchar-subscripts  
+-Wcomment  
+-Wduplicate-decl-specifier (C and Objective-C only) 
+-Wenum-compare (in C/ObjC; this is on by default in C++) 
+-Wformat   
+-Wint-in-bool-context  
+-Wimplicit (C and Objective-C only) 
+-Wimplicit-int (C and Objective-C only) 
+-Wimplicit-function-declaration (C and Objective-C only) 
+-Winit-self (only for C++) 
+-Wlogical-not-parentheses 
+-Wmain (only for C/ObjC and unless -ffreestanding)  
+-Wmaybe-uninitialized 
+-Wmemset-elt-size 
+-Wmemset-transposed-args 
+-Wmisleading-indentation (only for C/C++) 
+-Wmissing-braces (only for C/ObjC) 
+-Wmultistatement-macros  
+-Wnarrowing (only for C++)  
+-Wnonnull  
+-Wnonnull-compare  
+-Wopenmp-simd 
+-Wparentheses  
+-Wpointer-sign  
+-Wreorder   
+-Wrestrict   
+-Wreturn-type  
+-Wsequence-point  
+-Wsign-compare (only in C++)  
+-Wsizeof-pointer-div 
+-Wsizeof-pointer-memaccess 
+-Wstrict-aliasing  
+-Wstrict-overflow=1  
+-Wswitch  
+-Wtautological-compare  
+-Wtrigraphs  
+-Wuninitialized  
+-Wunknown-pragmas  
+-Wunused-function  
+-Wunused-label     
+-Wunused-value     
+-Wunused-variable  
+-Wvolatile-register-var 
+#+END_SRC
+
+
+
+- =-Wextra=
+启用以下警告
+#+BEGIN_SRC 
+-Wclobbered  
+-Wcast-function-type  
+-Wempty-body  
+-Wignored-qualifiers 
+-Wimplicit-fallthrough=3 
+-Wmissing-field-initializers  
+-Wmissing-parameter-type (C only)  
+-Wold-style-declaration (C only)  
+-Woverride-init  
+-Wsign-compare (C only) 
+-Wtype-limits  
+-Wuninitialized  
+-Wshift-negative-value (in C++03 and in C99 and newer)  
+-Wunused-parameter (only with -Wunused or -Wall) 
+-Wunused-but-set-parameter (only with -Wunused or -Wall)  
+#+END_SRC
+
+- =-Wdelete-incomplete=
+(C++ and Objective-C++ only)
+析构一个指向不完整的类型的指针，可能会造成运行时错误未定义行为。
+这个警告默认是开启的。
+
+- =-Wuseless-cast=
+(C++ and Objective-C++ only)
+变量被转换为自身类型
+
+
+
+
