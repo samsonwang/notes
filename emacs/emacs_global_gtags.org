@@ -1,0 +1,35 @@
+#+BEGIN_COMMENT
+.. title: 在emacs中使用GNU Global的配置指南
+.. slug: 
+.. date: 2018-01-02 23:47:05 UTC+08:00
+.. tags: emacs, global, gtags
+.. category: 
+.. link: 
+.. description: 
+.. type: text
+#+END_COMMENT
+
+* 在emacs中使用GNU Global的配置指南
+
+  本文主要针对emacs中的global的配置和使用方法做了简要介绍。
+  global是代码标签化索引工具，能够在许多源码中快速定位函数的实现位置。
+  我主要使用global来辅助代码跳转；还有一种用法是用来辅助代码补全。
+  
+* GNU Global相关介绍
+
+
+** 相关环境变量
+
+   =MAKEOBJDIRPREFIX=
+   =GTAGSLIBPATH=
+
+* 在emacs中使用global
+
+  使用 =helm-gtags= 作为global的前端
+
+  在 =helm-gtags-mode= 中配置组合快捷键
+
+
+
+
+
