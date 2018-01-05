@@ -1,6 +1,4 @@
 
-
-
 * leetcode
 Calculate the sum of two integers a and b, but you are not
 allowed to use the operator + and -.
@@ -9,8 +7,8 @@ Example:
 Given a = 1 and b = 2, return 3.
 
 * hint
-
-解题思路是使用位运算符完成数字的相加，需要注意的是相加之后的进位操作。
+1. 解题思路是使用位运算符完成数字的相加，需要注意的是相加之后的进位操作。
+2. 需要考虑到给定的整数可能有负数
 
 * my solution
 
@@ -18,12 +16,20 @@ Given a = 1 and b = 2, return 3.
 * leetcode solution
 
 #+BEGIN_SRC c++
-
-
-
+int getSum(int a, int b) {
+    int ans = a ^ b;
+    int c = a & b;
+    while(c != 0) {
+        c <<= 1;
+        int ans_prim = ans ^ c;
+        c = ans & c;
+        ans = ans_prim;
+    }
+    return ans;
+ }
 #+END_SRC
 
 
-
+  
 
 
