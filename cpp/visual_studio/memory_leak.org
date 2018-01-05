@@ -33,7 +33,7 @@ int atexit(*func);
 
 *** 
 
-** 使用VLD - visual Leak Dector
+** 使用VLD - Visual Leak Dector
 
 
 

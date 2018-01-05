@@ -1,0 +1,74 @@
+#+BEGIN_COMMENT
+.. title: best practice to avoid memory leak
+.. slug: 
+.. date: 2017-12-07 10:58:25 UTC+08:00
+.. tags: cpp, memory leak, smart ptr
+.. category: cpp
+.. link: 
+.. description: 
+.. type: text
+#+END_COMMENT
+
+
+* Best Practice to Avoid Memory Leak
+I have been checking memory leak problems in an old project. The project is a total mess, and it is very painful to figure out which part causes the memory leak. So I am thinking whether there is a way to avoid memory leak.
+
+** Functions to Dynamic Allocate Memory
+
+*** C-style functions
+#+BEGIN_SRC C
+void* malloc(size_t size);
+void* calloc(int n, size_t size);
+void* realloc(void* oldaddr, size_t size);
+void free(void* addr);
+#+END_SRC
+
+*** Cpp-style functions
+#+BEGIN_SRC C++
+new
+delete
+delete[]
+#+END_SRC
+
+** Stack Unwinding
+Definition: As you create objects statically(on the stack as opposed to allocating them in he heap memory) and perform function calls, they are "stacked up".
+When a scope (anything delimited by ={= and =}=) is exited(by using =return XXX;=)
+
+
+** RAII and Smart pointer
+RAII is short for resource acquisition is initialization.
+
+How many kinds of smart pointers are there in cpp for now?
+
+Smart pointer from boost and cpp11.
+
+- smart pointer in boost
+http://www.boost.org/
+
+- smart pointer in cpp11
+
+
+** How to Locate Memory Leak in code?
+
+what could we do when memory leak happens?
+
+
+
+** Debugging Tools for Windows
+Download Debugging Tools for Windows.
+Use the gflags utility to turn on user-mode stack traces.
+Use UMDH to take multiple snapshots of your program's memory. Take a snapshot before memory gets allocated, and take a second snapshot after a point at which you believe that your program has leaked memory. You might want to add pauses or prompts in your program to give you a chance to run UMDH and take the snapshots.
+Run UMDH again, this time in its mode that does a diff between the two snapshots. It will then generate a report containing the call stacks of suspected memory leaks.
+Restore your previous gflags settings when you're done.
+UMDH will give you more information than the CRT debug heap because it is watching memory allocations across your entire process; it can even tell you if third-party components are leaking.
+
+
+
+
+
+
+
+
+
+
+
