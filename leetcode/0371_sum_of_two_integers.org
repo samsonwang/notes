@@ -11,7 +11,7 @@ Given a = 1 and b = 2, return 3.
 2. 需要考虑到给定的整数可能有负数
 
 * my solution
-
+没有想出来解法
 
 * leetcode solution
 
@@ -29,7 +29,9 @@ int getSum(int a, int b) {
  }
 #+END_SRC
 
+* note
 
+按位运算
   
 
 
