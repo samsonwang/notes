@@ -35,7 +35,9 @@
 
 
 - 批量修改函数或变量的名称
-
+  =query-replace= 快捷键 =M-%=
+  =replace-string=
+  
 
 - 语法静态检查工具
   cppcheck
