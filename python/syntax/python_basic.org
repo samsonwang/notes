@@ -1,6 +1,6 @@
 #+startup:indent
 
-* python的基础语法
+* 基础语法
 ** 字符串
 1. 使用r'...'或r'''...'''避免复杂的字符串转义
 2. 对于字符集的支持
@@ -11,7 +11,8 @@
 ** 布尔类型
 在进行布尔运算时需要注意到“短路计算”原则
 Python把0、空字符''、和None算作False，其他数值和非空字符串非空字符串算作True.
-** 列表数据类型
+** 列表数据类型（list）
+列表数据类型是python的内置数据类型
 - 列表 :: Python的列表是一种有序的集合，可以随时添加和删除其中的元素
 - 输出列表 list_name#
 - 列表按照下标访问
@@ -22,12 +23,61 @@ Python把0、空字符''、和None算作False，其他数值和非空字符串�
   - insert(n, element) :: 在指定位置插入元素
   - pop(n) :: 删去指定位置的元素
   - list_name[n] = element :: 修改列表中指定的元素
+** 元组数据类型（tuple）
+元组数据类型与列表数据类型一样，也是一种有序数据类型，但是tuple在初始化之后不能再进行修改。
+~t1~ 展示的是一个常规tuple
+~t2~ 展示的是一个只有一个元素的tuple，注意需要创建只有一个元素的tuple时，需要加逗号
+~t3~ 展示的是一个tuple中嵌套了一个list，这样就可以对内部的list进行修改了，可以发现tuple只能保证所指向的list对象不发生变化，但是所嵌套list中的内容是可变的。
+#+BEGIN_SRC python
+t1 = (1 , 2)
+t2 = (1 ,)
+t3 = ('a', 'b', ['A', 'B'])
+t3[2][0] = 'X'
+t3[2][1] = 'Y'
+#+END_SRC
 
+* 输入和输出
+~input()~ 用来捕获用户的键盘输入
+~print()~ 用来将内容输出到命令行交互界面
 
+* 格式化字符串
+Python格式化字符串与C的比较相似，都是使用 ~%~ 占位符的形式
+#+BEGIN_SRC python
+print('%2d-%02d' % (3, 1))
+print('%.2f' % 3.1415926)
+#+END_SRC
 
+* 条件判断
+python中的条件分支语句示例如下
+#+BEGIN_SRC python
+if <条件判断1>:
+    <执行1>
+elif <条件判断2>:
+    <执行2>
+elif <条件判断3>:
+    <执行3>
+else:
+    <执行4>
+#+END_SRC
 
+* 循环语句
 
+** for循环
+for...in循环，依次把list或tuple中的每个元素迭代出来。
+示例代码如下
+#+BEGIN_SRC python
+names = ['Michael', 'Bob', 'Tracy']
+for name in names:
+    print(name)
+#+END_SRC
 
+可以使用range生成整数序列，以下示例代码是计算100内整数的总和。
+#+BEGIN_SRC python
+sum = 0
+for x in range(101):
+    sum = sum + x
+print(sum)
+#+END_SRC
 
 
 
