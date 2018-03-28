@@ -1,0 +1,21 @@
+
+
+* note of making bjwnjm company site
+
+
+针对不同的页面使用不同的模板（tmpl）进行制作
+
+
+* 公司概况页面的制作
+
+
+
+
+
+
+
+
+
+
+
+
