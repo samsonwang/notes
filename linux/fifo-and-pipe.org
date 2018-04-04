@@ -1,0 +1,25 @@
+
+
+from : [[https://unix.stackexchange.com/questions/75904/are-fifo-pipe-unix-domain-socket-the-same-thing-in-linux-kernel][stackoverflow]]
+
+** answer by igeorget
+UNIX domain sockets and FIFO may share some part of their implementation but they are conceptually very different. FIFO functions at a very low level. One process writes bytes into the pipe and another one reads from it. A UNIX domain socket has the same behaviour as a TCP/IP socket.
+
+A socket is bidirectional and can be used by a lot of processes simultaneously. A process can accept many connections on the same socket and attend several clients simultaneously. The kernel delivers a new file descriptor each time connect(2) or accept(2) is called on the socket. The packets will always go to the right process.
+On a FIFO, this would be impossible. For bidirectional comunication, you need two FIFOs, and you need a pair of FIFOs for each of your clients. There is no way of writing or reading in a selective way, because they are a much more primitive way to communicate.
+
+Anonymous pipes and FIFOs are very similar. The difference is that anonymous pipes don't exist as files on the filesystem so no process can open(2) it. They are used by processes that share them by another method. If a process opens a FIFOs and then performs, for example, a fork(2), its child will inherit its file descriptors and, among them, the pipe.
+
+The UNIX domain sockets, anonymous pipes and FIFOs are similar in the fact they use shared memory segments. The details of implementation may vary from one system to another but the idea is always the same: attach the same portion of memory in two distinct processes memory mapping to have them sharing data
+(edit: that would one obvious way to implement it but that is not how it is actually done in Linux, which simply uses the kernel memory for the buffers, see answer by @tjb63 below).
+The kernel then handles the system calls and abstracts the mechanism.
+
+
+** answer by tjb63
+There's quite a good discussion of this here: http://www.slideshare.net/divyekapoor/linux-kernel-implementation-of-pipes-and-fifos
+
+So far as I can see, both from the presentation slides, and the source @ http://lxr.free-electrons.com/source/fs/pipe.c - fifo's are implemented as a wrapper around pipe's, and pipe's themselves are implemented via the pipefs virtual filesystem.
+
+@lgeorget - The pipes appear to use kernel memory for buffers between the readers and the writers - they don't use 'shared memory' as such, and copy memory between user and kernel address spaces (eg, pipe_read calls pipe_iov_copy_to_user, which calls __copy_to_user_inatomic (or copy_to_user). __copy_to_user_inatomic calls copy_user_generic, which is on of several ASM implementations.
+
+
