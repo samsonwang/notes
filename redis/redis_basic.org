@@ -1,0 +1,67 @@
+
+** redis 常用指令
+
+*使用redis-cli* 进行操作
+（需要注意的是 =redis-cli= ）中并没有需要
+SET / GET / MSET / MGET / GETSET
+INCR / DECR / INCRBY / DECRBY
+EXPIRE
+
+** redis list
+redis list的底层实现是 =linked list= ，这样插入和删除数据的时间并不会随着链表数据的增减而发生改变。
+当然这样做的缺点是随机访问速度并没有 =array list= 快
+
+RPUSH / LPUSH
+LRANGE
+RPOP / LPOP
+LTRIM
+
+blocking operations on lists(阻塞操作)
+list当做队列来使用时，可以考虑使用阻塞的操作命令，而不是使用轮询机制（polling）。
+polling机制会让redis和工作线程做一些无意义的操作。
+BRPOP / BLPOP
+
+链表翻转
+RPOPLPUSH / BRPOPLPUSH
+
+
+
+** redis hash
+HMSET / HMGET
+HGET / HGETALL
+HINCRBY
+
+** redis set
+redis sets are unordered collections of strings
+
+SADD / SREM
+SISMEMBER
+SMEMBERS
+SINTER
+SPOP
+SUNIONSTORE
+SCARD (card = cardinality 基数)
+SRANDMEMBER
+
+** redis sorted sets
+sorted set中的每个元素都会对应一个浮点数，这个浮点数用于排序
+
+ZADD
+ZRANGE / ZREVRANGE / ZRANGE WITHSCORES
+ZRANGEBYSCORE
+ZREMRANGEBYSCORE
+ZRANGEBYLEX
+
+** redis bitmaps
+bitmaps are not an actual data type, but a set of bit-oriented operations defined on the string type 
+
+
+
+** redis自动创建和销毁主键（key)
+- When we add an element to an aggregate data type, if the target key does not exist, an empty aggregate data type is created before adding the element.
+- When we remove elements from an aggregate data type, if the value remains empty, the key is automatically destroyed.
+- Calling a read-only command such as LLEN (which returns the length of the list), or a write command removing elements, with an empty key, always produces the same result as if the key is holding an empty aggregate type of the type the command expects to find.
+
+
+
+
