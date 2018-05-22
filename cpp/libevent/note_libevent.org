@@ -1,0 +1,25 @@
+
+** code version
+libevent 2.1.8 stable
+
+** select.c
+
+*** FD_MASK类型
+fd_mask类型是做什么用的
+
+*** 在include后加数字是什么意思
+#+BEGIN_SRC c
+#include "evmap-internal.h"52
+#+END_SRC
+
+*** selectop
+
+
+*** eventop
+
+
+** event.c
+
+*** event_mm_calloc_
+使用了goto
+
