@@ -1,0 +1,68 @@
+
+
+* Linux 101 Hacks
+
+
+** Chapter 1: Powerful CD Command Hacks
+
+CDPATH
+
+
+Hack 6. Automatically Correct Mistyped Directory Names
+#+BEGIN_SRC shell
+shopt -s cdspell
+#+END_SRC
+
+
+** Chapter 2: Essential Linux Commands
+
+Hack 7. Grep Command
+
+#+BEGIN_SRC shell
+grep -c     (count)
+grep -v
+grep -i
+grep -r     (recursive)
+#+END_SRC
+
+Hack 8. Regular Expression in Grep
+
+- Beginning of line (^)
+- End of the line ($)
+- Empty lines (^$)
+- Single Charater (.)
+  "." 符号会匹配除行结束符以外的任何一个字符。
+- Zero or more occurrence (*)
+#+BEGIN_SRC shell
+grep "kernel: *."
+#+END_SRC
+
+
+Hack 9. Find Command
+
+- How to find files containing a specific word in its name?
+#+BEGIN_SRC shell
+find /etc -name "*mail*"
+#+END_SRC
+
+- How to find all the files greater than certain size?
+#+BEGIN_SRC shell
+find / -type f -size +100M
+#+END_SRC
+
+- How to find files that are not modified in the last x number of days?
+#+BEGIN_SRC shell
+find . -mtine +60
+#+END_SRC
+
+- How to find files that are modified in the last x number of days?
+#+BEGIN_SRC shell
+find . -mtine -2
+#+END_SRC
+
+
+- How to delete all the archive files with extension *.tar.gz and greater than 100MB?
+
+
+
+
